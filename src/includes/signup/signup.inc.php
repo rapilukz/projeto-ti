@@ -44,6 +44,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if ($errors) {
             $_SESSION["errors_signup"] = $errors;
+
+            $signupData = [
+                "username" => $username,
+                "email" => $email,
+                "birthdate" => $birthdate
+            ];
+
+            $_SESSION["signup_data"] = $signupData;
+
             header("Location: ../../auth/register.php");
             die();
         }

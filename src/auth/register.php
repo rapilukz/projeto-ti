@@ -34,36 +34,8 @@ require_once '../includes/signup/signup_view.inc.php';
 			<form action="../includes/signup/signup.inc.php" method="POST" class="mx-auto">
 				<h4 class="text-center">Create an account</h4>
 
-				<div class="mb-3 mt-3">
-					<label class="form-label">Username</label>
-					<input type="text" class="form-control" name="username" id="username" placeholder="Username">
-				</div>
-
-				<div class="mb-3">
-					<label class="form-label">Email</label>
-					<input type="text" class="form-control" name="email" id="email" placeholder="Email">
-				</div>
-
-				<div class="mb-3" id="datepicker">
-					<label class="form-label">Birthdate</label>
-					<input type="date" class="form-control" name="birthdate" id="birthdate" placeholder="Birthdate">
-				</div>
-
-				<div class="mb-3">
-					<label class="form-label">Password</label>
-					<input type="password" class="form-control" name="password" id="password" placeholder="Password">
-				</div>
-
-
-				<div class="mb-3">
-					<label class="form-label">Confirm Password</label>
-					<input type="password" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirm Password">
-					<div class="mt-3 d-flex">
-						<span class="sign-in ms-auto">Already have an account?<a href="login.php" class="ms-1">Sign Up</a></span>
-					</div>
-				</div>
-
 				<?php
+				signupInputs();
 				check_signup_erros();
 				?>
 
