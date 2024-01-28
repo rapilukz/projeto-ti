@@ -34,6 +34,7 @@ function isEmailRegistered(object $pdo, string $email): bool
     }
 }
 
-function create_user(object $pdo, string $username, string $email, string $password, string $birthdate)
+function createUser(object $pdo, string $username, string $email, string $password, string $birthdate)
 {
+    createNewUser($pdo, $username, $email, $password, $birthdate);
 }

@@ -51,7 +51,7 @@ require_once '../includes/signup/signup_view.inc.php';
 
 				<div class="mb-3">
 					<label class="form-label">Password</label>
-					<input type="text" class="form-control" name="password" id="password" placeholder="Password">
+					<input type="password" class="form-control" name="password" id="password" placeholder="Password">
 				</div>
 
 
