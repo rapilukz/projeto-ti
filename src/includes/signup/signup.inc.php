@@ -36,6 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $errors["invalid_password"] = "Passwords do not match";
         }
 
+        if (strtotime($birthdate) >= time()) {
+            $errors["invalid_birthdate"] = "Invalid Birthdate";
+        }
+
         require '../config-session.inc.php';
 
         if ($errors) {

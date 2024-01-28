@@ -33,6 +33,7 @@ require_once '../includes/signup/signup_view.inc.php';
 		<div class="container-fluid">
 			<form action="../includes/signup/signup.inc.php" method="POST" class="mx-auto">
 				<h4 class="text-center">Create an account</h4>
+
 				<div class="mb-3 mt-3">
 					<label class="form-label">Username</label>
 					<input type="text" class="form-control" name="username" id="username" placeholder="Username">
@@ -43,15 +44,16 @@ require_once '../includes/signup/signup_view.inc.php';
 					<input type="text" class="form-control" name="email" id="email" placeholder="Email">
 				</div>
 
+				<div class="mb-3" id="datepicker">
+					<label class="form-label">Birthdate</label>
+					<input type="date" class="form-control" name="birthdate" id="birthdate" placeholder="Birthdate">
+				</div>
+
 				<div class="mb-3">
 					<label class="form-label">Password</label>
 					<input type="text" class="form-control" name="password" id="password" placeholder="Password">
 				</div>
 
-				<div class="mb-3" id="datepicker">
-					<label class="form-label">Birthdate</label>
-					<input type="date" class="form-control" name="birthdate" id="birthdate" placeholder="Birthdate">
-				</div>
 
 				<div class="mb-3">
 					<label class="form-label">Confirm Password</label>
