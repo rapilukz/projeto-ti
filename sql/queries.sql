@@ -8,7 +8,3 @@ use `projeto-ti`;
 --    password VARCHAR(255) NOT NULL,
 --    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
-INSERT INTO
-    users (username, email, password)
-VALUES
-    ('john_doe', 'john.doe@example.com', 'lol123');
