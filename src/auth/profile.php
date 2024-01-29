@@ -16,6 +16,7 @@ if (!isset($_SESSION["user_id"])) {
 
     <!-- CSS  -->
     <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="../css/profile.css" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -43,13 +44,11 @@ if (!isset($_SESSION["user_id"])) {
     </header>
 
     <div class="main-container">
-        <div class="container-fluid">
-            <form class="mx-auto base-form">
-                <h1>LOL</h1>
-
-            </form>
-        </div>
+        <?php
+        render_user_info()
+        ?>
     </div>
+
 </body>
 
 </html>
