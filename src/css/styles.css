@@ -20,6 +20,12 @@ li {
 	list-style: none;
 }
 
+.link {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
+	color: #edf0f1;
+}
+
 a {
 	text-decoration: none !important;
 }
@@ -42,6 +48,8 @@ header {
 
 .links {
 	padding-right: 25px;
+	display: flex;
+	gap: 1rem;
 	margin: 0;
 }
 
@@ -82,7 +90,7 @@ header {
 	align-items: center;
 }
 
-form {
+.base-form {
 	border-radius: 20px;
 	width: 25%;
 	background-color: white;
@@ -135,7 +143,7 @@ h4 {
 }
 
 @media only screen and (max-width: 600px) {
-	form {
+	.base-form {
 		width: 100%;
 	}
 }

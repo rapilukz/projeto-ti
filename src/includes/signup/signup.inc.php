@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         createUser($pdo, $username, $email, $password, $birthdate);
-        header("Location: ../../index.php?signup=success");
+        header("Location: ../../auth/login.php?signup=success");
         $pdo = null;
         $stm = null;
         die();
@@ -66,6 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Query Failed: " . $e->getMessage());
     }
 } else {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     die();
 }
