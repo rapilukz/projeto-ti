@@ -51,11 +51,52 @@ header {
 	display: flex;
 	gap: 1rem;
 	margin: 0;
+	align-items: center;
+}
+
+.username-container {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	background: var(--color1) !important;
+	padding: 0.2rem 0.5rem;
+}
+
+.username {
+	color: #edf0f1 !important;
+	margin-left: 15%;
+	font-weight: 700 !important;
+}
+
+.username:hover {
+	background: var(--color1-hover) !important;
+}
+
+.dropdown-menu {
+	padding-top: 0 !important;
+}
+
+.dropdown-item {
+	display: flex !important;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.links .dropdown-btn i {
+	font-size: 1.5rem;
+}
+
+button.dropdown-item {
+	padding: 0;
 }
 
 .logo-text {
 	font-size: 1.5rem;
 	user-select: none;
+}
+
+.second-item {
+	margin: 0.5rem 0;
 }
 
 .link,
@@ -71,6 +112,10 @@ header {
 	color: #02a7bd;
 }
 
+.buttons-container {
+	gap: 0.5rem;
+}
+
 .login-btn {
 	padding: 8px 20px;
 	background-color: var(--color1);
@@ -81,7 +126,18 @@ header {
 	font-size: 0.9rem;
 }
 
-.login-btn:hover {
+.signup-btn {
+	padding: 8px 20px;
+	border: 1px solid var(--color1);
+	border-radius: 50px;
+	cursor: pointer;
+	transition: 0.2s;
+	font-size: 0.9rem;
+	background: none;
+}
+
+.login-btn:hover,
+.signup-btn:hover {
 	background-color: var(--color1-hover);
 }
 
@@ -140,6 +196,19 @@ h4 {
 	height: 70%;
 	justify-content: center;
 	align-items: center;
+}
+
+.dropdown-toggle::after {
+	display: none !important;
+}
+
+.dropdown-btn {
+	background: transparent;
+}
+
+.dropdown-btn i {
+	color: white;
+	font-size: 1rem;
 }
 
 @media only screen and (max-width: 600px) {
