@@ -4,6 +4,11 @@
 <?php
 require_once '../includes/config-session.inc.php';
 require_once '../includes/signup/signup_view.inc.php';
+
+session_start();
+if (isset($_SESSION["user_id"])) {
+	header("Location: ../index.php");
+}
 ?>
 
 <head>
