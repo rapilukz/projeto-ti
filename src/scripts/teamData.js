@@ -33,9 +33,9 @@ function populateTable(data) {
 	const tableBody = $("#team-table tbody");
 
 	data.forEach((row) => {
-		let newRow = $(`<tr data-user-id=` + row.team_id + `>`);
+		let newRow = $(`<tr data-team-id=` + row.team_id + `>`);
 
-		// Populate the row with user data
+		// Populate the row with team data
 		newRow.append(
 			"<th class='text-white' scope='row'>" + row.team_id + "</th>"
 		);
@@ -43,7 +43,7 @@ function populateTable(data) {
 		newRow.append("<td class='text-white'>" + row.foundation_year + "</td>");
 		newRow.append("<td class='text-white'>" + row.country + "</td>");
 
-		// Add an Edit and Delete button for each user
+		// Add an Edit and Delete button for each team
 		newRow.append(
 			`<td><button class='btn btn-primary btn-sm edit-button' onclick='showUseEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button></td>`
 		);
@@ -88,4 +88,37 @@ function searchTable() {
 
 	// Update the table with the filtered users
 	debouncedPopulateTable(filteredTeams);
+}
+
+function getUserId(event) {
+	return $(event.target).closest("tr").attr("data-team-id");
+}
+
+function deleteUser(event) {
+	if (!confirm("Do you want to delete this team?")) return false;
+
+	const team_id = getUserId(event);
+
+	$.ajax({
+		url: "./includes/teams/team_delete.inc.php",
+		method: "POST",
+		dataType: "json",
+		data: { id: team_id },
+		success: function (data) {
+			if (data.status == "error") {
+				console.log(data);
+			}
+
+			if (data.status == "success") {
+				allTeams = allTeams.filter((team) => team.team_id !== team_id);
+
+				$("#team-table tbody")
+					.find("tr[data-team-id='" + team_id + "']")
+					.remove();
+			}
+		},
+		error: function (xhr, status, error) {
+			console.error("Error: " + status);
+		},
+	});
 }

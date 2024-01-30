@@ -6,3 +6,8 @@ function getTeams(object $pdo)
 {
     return getAllUsers($pdo);
 }
+
+function deleteTeam(object $pdo, string $id)
+{
+    deleteTeamById($pdo, $id);
+}

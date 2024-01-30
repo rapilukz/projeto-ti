@@ -12,3 +12,11 @@ function getAllUsers(object $pdo)
 
     return $result;
 }
+
+function deleteTeamById(object $pdo, string $id)
+{
+    $query = "DELETE from teams where team_id = :team_id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":team_id", $id);
+    $stmt->execute();
+}

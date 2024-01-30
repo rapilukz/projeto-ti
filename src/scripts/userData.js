@@ -55,10 +55,7 @@ function deleteUser(event) {
 }
 
 function getUserId(event) {
-	return (
-		$(event.target).closest("tr").attr("data-user-id") ||
-		$(".card-body").attr("data-user-id")
-	);
+	return $(event.target).closest("tr").attr("data-user-id");
 }
 
 function showUseEditModal(event) {
