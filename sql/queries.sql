@@ -1,6 +1,6 @@
-use `projeto-ti`;
+CREATE DATABASE IF NOT EXISTS `projeto-ti`;
 
--- CREATE DATABASE IF NOT EXISTS projeto-ti 
+use `projeto-ti`;
 -- CREATE TABLE IF NOT EXISTS users (
 --     user_id INT AUTO_INCREMENT PRIMARY KEY,
 --     username VARCHAR(50) NOT NULL,
@@ -9,3 +9,5 @@ use `projeto-ti`;
 --     birthdate DATE,
 --     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
+
+select * from users;

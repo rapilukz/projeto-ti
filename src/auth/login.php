@@ -5,7 +5,6 @@
 require_once '../includes/config-session.inc.php';
 require_once '../includes/login/login_view.inc.php';
 
-session_start();
 if (isset($_SESSION["user_id"])) {
     header("Location: ../index.php");
 }
@@ -36,7 +35,7 @@ if (isset($_SESSION["user_id"])) {
 
 <body>
     <header>
-        <h1 class="logo-text">Projeto Final</h1>
+        <h1><a class="logo-text" href="../index.php">Projeto Final</a></h1>
     </header>
 
     <div class="main-container">
@@ -52,7 +51,7 @@ if (isset($_SESSION["user_id"])) {
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     <div class="mt-3 d-flex">
                         <a href="#" id="forgot-password">Forgot password?</a>
-                        <span class="sign-in ms-auto">Don't have an account?<a href="register.php" class="ms-1">Sign In</a></span>
+                        <span class="sign-in ms-auto">Don't have an account?<a href="register.php" class="ms-1">Sign Up</a></span>
                     </div>
                 </div>
 

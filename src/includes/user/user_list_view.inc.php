@@ -1,21 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
-function check_login_errors()
-{
-
-    if (isset($_SESSION['errors_login'])) {
-        $errors = $_SESSION['errors_login'];
-
-        foreach ($errors as $error) {
-            echo '<div class="form-error text-danger">' . $error . '</div>';
-        }
-
-        unset($_SESSION['errors_login']);
-    }
-}
-
 
 function output_user()
 {
@@ -35,10 +19,5 @@ function output_user()
                 </ul>
             </div>
            ';
-    } else {
-        echo '<div class="buttons-container d-flex">
-                <a href="auth/login.php"><button type="button" class="login-btn">Login</button></a>
-                <a href="auth/register.php"><button type="button" class="signup-btn">Sign Up</button></a>
-            </div>';
     }
 }

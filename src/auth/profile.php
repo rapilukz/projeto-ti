@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php
-require_once '../includes/profile/profile_view.inc.php';
+require_once '../includes/user/profile_view.inc.php';
 session_start();
 if (!isset($_SESSION["user_id"])) {
     header("Location: ../index.php");
@@ -34,7 +34,7 @@ if (!isset($_SESSION["user_id"])) {
 
 <body>
     <header>
-        <h1 class="logo-text">Projeto Final</h1>
+        <h1><a class="logo-text" href="../index.php">Projeto Final</a></h1>
         <nav class="main-navbar">
             <?php
             output_profile_user();

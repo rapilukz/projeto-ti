@@ -5,7 +5,6 @@
 require_once '../includes/config-session.inc.php';
 require_once '../includes/signup/signup_view.inc.php';
 
-session_start();
 if (isset($_SESSION["user_id"])) {
 	header("Location: ../index.php");
 }
@@ -34,7 +33,7 @@ if (isset($_SESSION["user_id"])) {
 
 <body>
 	<header>
-		<h1 class="logo-text">Projeto Final</h1>
+		<h1><a class="logo-text" href="../index.php">Projeto Final</a></h1>
 	</header>
 
 	<div class="main-container">
@@ -47,7 +46,7 @@ if (isset($_SESSION["user_id"])) {
 				check_signup_errors();
 				?>
 
-				<button type="submit" class="btn form-btn mt-3">Sign In</button>
+				<button type="submit" class="btn form-btn mt-3">Sign Up</button>
 
 			</form>
 		</div>

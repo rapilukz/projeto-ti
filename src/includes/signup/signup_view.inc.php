@@ -66,7 +66,7 @@ function signupInputs()
             <label class="form-label">Confirm Password</label>
             <input type="password" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirm Password">
             <div class="mt-3 d-flex">
-                <span class="sign-in ms-auto">Already have an account?<a href="login.php" class="ms-1">Sign Up</a></span>
+                <span class="sign-in ms-auto">Already have an account?<a href="login.php" class="ms-1">Sign In</a></span>
             </div>
         </div>';
 }

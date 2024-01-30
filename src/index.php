@@ -34,7 +34,7 @@ session_start();
 
 <body>
 	<header>
-		<h1 class="logo-text">Projeto Final</h1>
+		<h1><a class="logo-text" href="#">Projeto Final</a></h1>
 		<nav class="main-navbar">
 			<?php
 			output_user();
