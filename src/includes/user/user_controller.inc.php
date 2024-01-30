@@ -12,3 +12,36 @@ function deleteUser(object $pdo, string $id)
 {
     deleteUserById($pdo, $id);
 }
+
+
+function isInputEmpty(string $username, string $email, string $birthdate, string $role): bool
+{
+    return empty($username) || empty($email) || empty($birthdate) || empty($role);
+}
+
+function isValidEmail(string $email): bool
+{
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isUsernameTaken(object $pdo, string $username): bool
+{
+    if (getUsername($pdo, $username)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isEmailRegistered(object $pdo, string $email): bool
+{
+    if (getEmail($pdo, $email)) {
+        return true;
+    } else {
+        return false;
+    }
+}

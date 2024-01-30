@@ -73,6 +73,41 @@ if (!isset($_SESSION["user_id"])) {
         </div>
     </div>
 
+    <div id="modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="username">
+
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" name="email" class="form-control" id="email">
+
+                        <label for="birthdateInput" class="form-label">Birthdate</label>
+                        <input type="date" name="birthdate" class="form-control" id="birthdate">
+
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-select" id="role" name="role">
+                            <!-- Options will be dynamically populated here -->
+                        </select>
+
+                        <div id="errors" class="mt-2"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" onclick="updateUser()" class="btn btn-primary edit-button"><i class="fas fa-save"></i>Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         fillUsersTable();
     </script>

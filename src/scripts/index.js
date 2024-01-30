@@ -1,5 +1,6 @@
 // Global variable to store all users
 let allUsers = [];
+const roleOptions = ["user", "admin"];
 
 async function getUsers() {
 	return new Promise(function (resolve, reject) {
@@ -27,8 +28,10 @@ async function fillUsersTable() {
 	populateTable(users);
 }
 
-function deleteUser(user_id) {
+function deleteUser(event) {
 	if (!confirm("Do you want to delete this user?")) return false;
+
+	const user_id = getUserId(event);
 
 	$.ajax({
 		url: "./includes/user/user_delete.inc.php",
@@ -51,6 +54,35 @@ function deleteUser(user_id) {
 	});
 }
 
+function getUserId(event) {
+	return $(event.target).closest("tr").attr("data-user-id");
+}
+
+function showEditModal(event) {
+	const user_id = getUserId(event);
+	const userData = allUsers.find((user) => user.user_id.toString() === user_id);
+
+	showModal();
+	renderModalData(userData);
+}
+
+function renderModalData(data) {
+	const roleInput = $("#role");
+
+	$("#username").val(data.username);
+	$("#email").val(data.email);
+	$("#birthdate").val(data.birthdate);
+	document.getElementById("modal").setAttribute("user-id", data.user_id);
+
+	roleInput.empty(); // Clear existing options
+
+	roleOptions.forEach((role) => {
+		const option = $("<option>").text(role).val(role);
+		roleInput.append(option);
+	});
+	roleInput.val(data.role);
+}
+
 function populateTable(data) {
 	clearTable();
 	const tableBody = $("#user-table tbody");
@@ -67,14 +99,14 @@ function populateTable(data) {
 
 		// Add an Edit and Delete button for each user
 		newRow.append(
-			"<td><button class='btn btn-primary btn-sm edit-button'><i class='fa-solid fa-pencil'></i>Edit</button></td>"
+			`<td><button class='btn btn-primary btn-sm edit-button' onclick='showEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button></td>`
 		);
 		// Prevents deleting the current user
 		if (row.same_user) {
 			newRow.append(`<td></td>`);
 		} else {
 			newRow.append(
-				`<td><button class='btn btn-danger btn-sm delete-button' onclick='deleteUser(${row.user_id})'><i class='fa-solid fa-trash-can'></i>Delete</button></td>`
+				`<td><button class='btn btn-danger btn-sm delete-button' onclick='deleteUser(event);'><i class='fa-solid fa-trash-can'></i>Delete</button></td>`
 			);
 		}
 
@@ -114,4 +146,55 @@ function searchTable() {
 
 	// Update the table with the filtered users
 	debouncedPopulateTable(filteredUsers);
+}
+
+function showModal() {
+	const modal = new bootstrap.Modal(document.getElementById("modal"), {});
+	modal.show();
+}
+
+function closeModal() {
+	const modal = new bootstrap.Modal(document.getElementById("modal"), {});
+	modal.hide();
+}
+
+function updateUser() {
+	const errors = $("#errors");
+	errors.empty();
+
+	const id = $("#modal").attr("user-id");
+	const username = $("#username").val();
+	const email = $("#email").val();
+	const birthdate = $("#birthdate").val();
+	const role = $("#role").val();
+
+	$.ajax({
+		url: "./includes/user/user_update.inc.php",
+		method: "POST",
+		dataType: "json",
+		data: {
+			id: id,
+			username: username,
+			email: email,
+			birthdate: birthdate,
+			role,
+		},
+		success: function (data) {
+			console.log(data);
+			if (data.status === "error") {
+				data.message.forEach((error) => {
+					const html = `<div class="form-error text-danger">${error}</div>`;
+
+					errors.append(html);
+				});
+			}
+			if (data.status == "success") {
+				// Update the global variable by removing the deleted user
+				closeModal();
+			}
+		},
+		error: function (xhr, status, error) {
+			console.error("Error: " + status);
+		},
+	});
 }
