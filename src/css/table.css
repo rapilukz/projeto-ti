@@ -7,6 +7,16 @@ th {
 	border: 1px solid var(--color1);
 }
 
+.modal-edit-button {
+	background-color: var(--color1) !important;
+	border: 1px solid var(--color1) !important;
+}
+.modal-edit-button:hover {
+	background-color: var(--color1-hover) !important;
+	border: 1px solid var(--color1-hover) !important;
+}
+
+.modal-edit-button i,
 .edit-button i,
 .delete-button i,
 .insert-button i {

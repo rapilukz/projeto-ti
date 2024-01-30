@@ -32,6 +32,7 @@ include './includes/reusable_views.inc.php';
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
         <!-- JS -->
+        <script src="scripts/generics.js"></script>
         <script src="scripts/teamData.js"></script>
     </head>
     <title>Projeto TI</title>
@@ -81,31 +82,26 @@ include './includes/reusable_views.inc.php';
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit User</h5>
+                    <h5 class="modal-title">Edit Team</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" id="username">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" id="name">
 
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" id="email">
+                        <label for="foundation-year" class="form-label">Foundation Year</label>
+                        <input type="number" min="1800" max="2099" name="foundation-year" class="form-control" id="foundation-year">
 
-                        <label for="birthdateInput" class="form-label">Birthdate</label>
-                        <input type="date" name="birthdate" class="form-control" id="birthdate">
-
-                        <label for="role" class="form-label">Role</label>
-                        <select class="form-select" id="role" name="role">
-                            <!-- Options will be dynamically populated here -->
-                        </select>
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" name="country" class="form-control" id="country">
 
                         <div id="errors" class="mt-2"></div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="updateUser()" class="btn btn-primary edit-button"><i class="fas fa-save"></i>Save</button>
+                    <button type="button" onclick="updateTeam()" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
                 </div>
             </div>
         </div>

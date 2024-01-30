@@ -70,7 +70,7 @@ function renderModalData(data) {
 	const roleInput = $("#role");
 
 	$("#username").val(data.username);
-	$("#email").val(data.email);
+	$("#foundation-year").val(data.email);
 	$("#birthdate").val(data.birthdate);
 	document.getElementById("modal").setAttribute("user-id", data.user_id);
 
@@ -147,21 +147,6 @@ function searchTable() {
 
 	// Update the table with the filtered users
 	debouncedPopulateTable(filteredUsers);
-}
-
-function showModal() {
-	const errors = $("#errors");
-	errors.empty();
-
-	const modal = new bootstrap.Modal(document.getElementById("modal"), {});
-	modal.show();
-}
-
-function closeModal() {
-	const modalId = document.getElementById("modal");
-	const modal = bootstrap.Modal.getInstance(modalId);
-
-	modal.hide();
 }
 
 function updateUser() {

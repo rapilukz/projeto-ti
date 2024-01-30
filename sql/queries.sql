@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
 --
 CREATE TABLE IF NOT EXISTS Teams (
     team_id INT AUTO_INCREMENT PRIMARY KEY,
-    team_name VARCHAR(100) NOT NULL,
+    team_name VARCHAR(100) NOT NULL UNIQUE,
     foundation_year INT,
     country VARCHAR(50)
 );
@@ -27,7 +27,7 @@ VALUES
     ('Manchester United', 1878, 'England'),
     ('FC Barcelona', 1899, 'Spain'),
     ('Bayern Munich', 1900, 'Germany'),
-    ('AC Milan', 1899, 'Italy');
+    ('AC Milan', '1899', 'Italy');
 
 CREATE TABLE IF NOT EXISTS players (
     player_id INT AUTO_INCREMENT PRIMARY KEY,

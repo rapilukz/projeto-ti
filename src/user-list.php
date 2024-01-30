@@ -25,6 +25,7 @@ if (!isset($_SESSION["user_id"])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
         <!-- JS -->
+        <script src="scripts/generics.js"></script>
         <script src="scripts/userData.js"></script>
 
         <!-- Bootstrap -->
@@ -103,7 +104,7 @@ if (!isset($_SESSION["user_id"])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="updateUser()" class="btn btn-primary edit-button"><i class="fas fa-save"></i>Save</button>
+                    <button type="button" onclick="updateUser()" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
                 </div>
             </div>
         </div>
