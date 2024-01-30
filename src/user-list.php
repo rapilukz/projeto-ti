@@ -53,7 +53,7 @@ if (!isset($_SESSION["user_id"])) {
             <div class="input-group mb-5" id="search-container">
                 <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
                 </span>
-                <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by username" aria-label="search" aria-describedby="basic-addon1">
+                <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Username" aria-label="search" aria-describedby="basic-addon1">
             </div>
             <table class="table" id="user-table">
                 <thead>

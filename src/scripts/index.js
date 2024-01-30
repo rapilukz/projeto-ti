@@ -21,7 +21,6 @@ async function getUsers() {
 }
 
 // Other functions remain unchanged...
-
 async function fillUsersTable() {
 	// Use the global variable instead of calling getUsers directly
 	const users = await getUsers();

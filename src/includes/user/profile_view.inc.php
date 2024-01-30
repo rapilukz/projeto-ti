@@ -68,7 +68,7 @@ function render_user_info()
                     <hr>
                     <div class="row">
                         <div class="col-sm-12">
-                            <button class="edit-btn">Edit</button>
+                            <button class="edit-btn"><i class="fa-solid fa-pencil me-2"></i>Edit</button>
                         </div>
                     </div>
                 </div>
