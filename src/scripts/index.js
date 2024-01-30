@@ -55,10 +55,13 @@ function deleteUser(event) {
 }
 
 function getUserId(event) {
-	return $(event.target).closest("tr").attr("data-user-id");
+	return (
+		$(event.target).closest("tr").attr("data-user-id") ||
+		$(".card-body").attr("data-user-id")
+	);
 }
 
-function showEditModal(event) {
+function showUseEditModal(event) {
 	const user_id = getUserId(event);
 	const userData = allUsers.find((user) => user.user_id.toString() === user_id);
 
@@ -100,7 +103,7 @@ function populateTable(data) {
 
 		// Add an Edit and Delete button for each user
 		newRow.append(
-			`<td><button class='btn btn-primary btn-sm edit-button' onclick='showEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button></td>`
+			`<td><button class='btn btn-primary btn-sm edit-button' onclick='showUseEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button></td>`
 		);
 		// Prevents deleting the current user
 		if (row.same_user) {

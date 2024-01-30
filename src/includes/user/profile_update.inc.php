@@ -1,10 +1,10 @@
 <?php
 
-if (isset($_POST['id']) && isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["birthdate"]) && isset($_POST["role"])) {
+if (isset($_POST['id']) && isset($_POST["username"]) && isset($_POST["email"]) && isset($_POST["birthdate"])) {
+
     $id = $_POST["id"];
     $username = $_POST["username"];
     $email = $_POST["email"];
-    $role = $_POST["role"];
     $birthdate = $_POST["birthdate"];
 
     try {
@@ -15,6 +15,11 @@ if (isset($_POST['id']) && isset($_POST["username"]) && isset($_POST["email"]) &
 
         // ERROR HANDLERS
         $errors = [];
+        session_start();
+
+        if (isInputEmpty($username, $email, $birthdate, "user")) {
+            $errors[] = "Fill in all the fields";
+        }
 
         if (!isValidEmail($email)) {
             $errors[] = "Invalid email";
@@ -24,11 +29,11 @@ if (isset($_POST['id']) && isset($_POST["username"]) && isset($_POST["email"]) &
             $errors[] = "Invalid Birthdate";
         }
 
-        if (isUsernameTaken($pdo, $username)) {
+        if (isUsernameTaken($pdo, $username) && $username !=  $_SESSION["user_username"]) {
             $errors[] = "Username already taken!";
         }
 
-        if (isEmailRegistered($pdo, $email)) {
+        if (isEmailRegistered($pdo, $email) && $email !=  $_SESSION["user_email"]) {
             $errors[] = "Email already registered!";
         }
 
@@ -37,13 +42,12 @@ if (isset($_POST['id']) && isset($_POST["username"]) && isset($_POST["email"]) &
             die();
         }
 
-        updateUserData($pdo, $id, $username, $email, $role, $birthdate);
+        updateProfileData($pdo, $id, $username, $email, $birthdate);
 
-        session_start();
+
         $_SESSION["user_username"] = htmlspecialchars($username);
         $_SESSION["user_email"] = htmlspecialchars($email);
         $_SESSION["user_birthdate"] = htmlspecialchars($birthdate);
-        $_SESSION["user_role"] = htmlspecialchars($role);
 
         header('Content-Type: application/json');
         // Send a success response

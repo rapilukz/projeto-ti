@@ -30,8 +30,9 @@ function isValidEmail(string $email): bool
 
 function isUsernameTaken(object $pdo, string $username): bool
 {
-    $result = getUsername($pdo, $username);
-    if ($result && $result['username'] != $username) {
+
+
+    if (getUsername($pdo, $username)) {
         return true;
     } else {
         return false;
@@ -40,9 +41,7 @@ function isUsernameTaken(object $pdo, string $username): bool
 
 function isEmailRegistered(object $pdo, string $email): bool
 {
-    $result = getEmail($pdo, $email);
-
-    if ($result && $result['email'] != $email) {
+    if (getEmail($pdo, $email)) {
         return true;
     } else {
         return false;
@@ -52,4 +51,14 @@ function isEmailRegistered(object $pdo, string $email): bool
 function updateUserData(object $pdo, string $id, string $username, string $email, string $role, string $birthdate)
 {
     updateUser($pdo, $id, $username, $email, $role, $birthdate);
+}
+
+function updateProfileData(object $pdo, string $id, string $username, string $email, string $birthdate)
+{
+    updateUserProfile($pdo, $id, $username, $email, $birthdate);
+}
+
+function getUserData(object $pdo, string $id)
+{
+    return getUserById($pdo, $id);
 }
