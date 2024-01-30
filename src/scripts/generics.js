@@ -12,3 +12,14 @@ function closeModal() {
 
 	modal.hide();
 }
+
+function renderModalErrors(errors) {
+	const html = $("#errors");
+	html.empty();
+
+	errors.forEach((error) => {
+		const errorHtml = `<div class="form-error text-danger">${error}</div>`;
+
+		html.append(errorHtml);
+	});
+}

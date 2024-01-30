@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+function isInputEmpty(string $name, string $year, string $country): bool
+{
+    return empty($name) || empty($year) || empty($country);
+}
+
+
 function getTeams(object $pdo)
 {
     return getAllUsers($pdo);
@@ -28,4 +34,9 @@ function isTeamTaken(object $pdo, string $name, string $id)
 function updateTeamData(object $pdo, string $id, string $name, string $year, string $country)
 {
     updateTeam($pdo, $id, $name, $year, $country);
+}
+
+function insertTeamData(object $pdo, string $name, string $year,  string $country)
+{
+    insertTeam($pdo, $name, $year, $country);
 }

@@ -53,7 +53,7 @@ include './includes/reusable_views.inc.php';
     <div class="main-container">
         <div class="container">
             <div class="d-flex mb-3 justify-content-between">
-                <button class="btn btn-primary insert-button"><i class="fa fa-plus"></i>
+                <button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
                     Insert</button>
                 <div class="input-group" id="search-container">
                     <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Name" aria-label="search">
@@ -82,7 +82,7 @@ include './includes/reusable_views.inc.php';
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Team</h5>
+                    <h5 class="modal-title"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -101,7 +101,7 @@ include './includes/reusable_views.inc.php';
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="updateTeam()" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
+                    <button type="button" id="edit-button" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
                 </div>
             </div>
         </div>

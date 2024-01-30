@@ -172,11 +172,7 @@ function updateUser() {
 		},
 		success: async function (data) {
 			if (data.status === "error") {
-				data.message.forEach((error) => {
-					const html = `<div class="form-error text-danger">${error}</div>`;
-
-					errors.append(html);
-				});
+				renderModalErrors(data.message);
 			}
 			if (data.status == "success") {
 				const users = await getUsers();

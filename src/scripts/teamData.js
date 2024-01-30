@@ -124,6 +124,7 @@ function deleteTeam(event) {
 }
 
 function showTeamEditModal(event) {
+	document.querySelector(".modal-title").innerHTML = "Edit Team";
 	const team_id = getTeamId(event);
 	const teamData = allTeams.find((team) => team.team_id.toString() === team_id);
 
@@ -136,12 +137,17 @@ function renderModalData(data) {
 	$("#foundation-year").val(data.foundation_year);
 	$("#country").val(data.country);
 	document.getElementById("modal").setAttribute("team-id", data.team_id);
+	document.getElementById("edit-button").addEventListener("click", updateTeam);
+}
+
+function clearModalData() {
+	$("#name").val("");
+	$("#foundation-year").val("");
+	$("#country").val("");
+	document.getElementById("modal").removeAttribute("team-id");
 }
 
 function updateTeam() {
-	const errors = $("#errors");
-	errors.empty();
-
 	const id = $("#modal").attr("team-id");
 	const name = $("#name").val();
 	const year = $("#foundation-year").val();
@@ -159,16 +165,59 @@ function updateTeam() {
 		},
 		success: async function (data) {
 			if (data.status === "error") {
-				data.message.forEach((error) => {
-					const html = `<div class="form-error text-danger">${error}</div>`;
-
-					errors.append(html);
-				});
+				renderModalErrors(data.message);
 			}
 			if (data.status == "success") {
 				const teams = await getTeams();
 				populateTable(teams);
 				closeModal();
+				document
+					.getElementById("edit-button")
+					.removeEventListener("click", updateTeam);
+				clearModalData();
+			}
+		},
+		error: function (xhr, status, error) {
+			console.error("Error: " + status);
+		},
+	});
+}
+function showInserTeamModal() {
+	clearModalData();
+	document.querySelector(".modal-title").innerHTML = "Insert Team";
+	document.getElementById("edit-button").addEventListener("click", insertTeam);
+	showModal();
+}
+function insertTeam() {
+	document
+		.getElementById("edit-button")
+		.removeEventListener("click", insertTeam);
+
+	const name = $("#name").val();
+	const year = $("#foundation-year").val();
+	const country = $("#country").val();
+
+	$.ajax({
+		url: "./includes/teams/team_insert.inc.php",
+		method: "POST",
+		dataType: "json",
+		data: {
+			name: name,
+			year: year,
+			country: country,
+		},
+		success: async function (data) {
+			if (data.status === "error") {
+				renderModalErrors(data.message);
+			}
+			if (data.status == "success") {
+				const teams = await getTeams();
+				populateTable(teams);
+				closeModal();
+				document
+					.getElementById("edit-button")
+					.removeEventListener("click", insertTeam);
+				clearModalData();
 			}
 		},
 		error: function (xhr, status, error) {

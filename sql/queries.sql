@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL,
     PASSWORD VARCHAR(255) NOT NULL,
     birthdate DATE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP role VARCHAR(50) DEFAULT 'user'
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    role VARCHAR(50) DEFAULT 'user'
 );
 
 --
@@ -23,10 +24,10 @@ CREATE TABLE IF NOT EXISTS Teams (
 INSERT INTO
     teams (team_name, foundation_year, country)
 VALUES
-    ('Real Madrid', 1902, 'Spain'),
-    ('Manchester United', 1878, 'England'),
-    ('FC Barcelona', 1899, 'Spain'),
-    ('Bayern Munich', 1900, 'Germany'),
+    ('Real Madrid', '1902', 'Spain'),
+    ('Manchester United', '1878', 'England'),
+    ('FC Barcelona', '1899', 'Spain'),
+    ('Bayern Munich', '1900', 'Germany'),
     ('AC Milan', '1899', 'Italy');
 
 CREATE TABLE IF NOT EXISTS players (
@@ -70,7 +71,7 @@ VALUES
 SELECT
     *
 FROM
-    trainer;
+    trainers;
 
 SELECT
     *

@@ -43,3 +43,13 @@ function updateTeam(object $pdo, string $id, string $name, string $year, string 
     $stmt->bindParam(':team_id', $id);
     $stmt->execute();
 }
+
+function insertTeam(object $pdo, string $name, string $year, string $country)
+{
+    $query = "INSERT INTO teams (team_name, foundation_year, country) VALUES (:team_name, :foundation_year , :country)";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':team_name', $name);
+    $stmt->bindParam(':foundation_year', $year);
+    $stmt->bindParam(':country', $country);
+    $stmt->execute();
+}
