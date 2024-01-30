@@ -38,6 +38,13 @@ if (isset($_POST['id']) && $username = $_POST["username"] && $email = $_POST["em
         }
 
         updateUserData($pdo, $id, $username, $email, $role, $birthdate);
+
+        session_start();
+        $_SESSION["user_username"] = htmlspecialchars($username);
+        $_SESSION["user_email"] = htmlspecialchars($username);
+        $_SESSION["user_birthdate"] = htmlspecialchars($birthdate);
+        $_SESSION["user_birthdate"] = htmlspecialchars($role);
+
         header('Content-Type: application/json');
         // Send a success response
         echo json_encode(['status' => 'success', 'message' => 'User updated successfully']);
