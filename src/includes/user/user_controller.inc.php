@@ -7,3 +7,8 @@ function getUsers(object $pdo)
 {
     return getAllUsers($pdo);
 }
+
+function deleteUser(object $pdo, string $id)
+{
+    deleteUserById($pdo, $id);
+}
