@@ -62,6 +62,7 @@ if (!isset($_SESSION["user_id"])) {
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>
                         <th scope="col">Birthdate</th>
+                        <th scope="col">Role</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>

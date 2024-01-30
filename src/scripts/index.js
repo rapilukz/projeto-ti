@@ -96,6 +96,7 @@ function populateTable(data) {
 		newRow.append("<td class='text-white'>" + row.username + "</td>");
 		newRow.append("<td class='text-white'>" + row.email + "</td>");
 		newRow.append("<td class='text-white'>" + row.birthdate + "</td>");
+		newRow.append("<td class='text-white'>" + row.role + "</td>");
 
 		// Add an Edit and Delete button for each user
 		newRow.append(
