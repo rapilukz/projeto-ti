@@ -1,4 +1,9 @@
 let allTeams = [];
+
+$(document).ready(() => {
+	fillTeamsTable();
+});
+
 function getTeams() {
 	return new Promise(function (resolve, reject) {
 		$.ajax({
@@ -56,6 +61,31 @@ function clearTable() {
 	$("#team-table tbody").empty();
 }
 
-$(document).ready(() => {
-	fillTeamsTable();
-});
+function debounce(func, delay) {
+	let timeoutId;
+	return function () {
+		const context = this;
+		const args = arguments;
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(() => {
+			func.apply(context, args);
+		}, delay);
+	};
+}
+
+const debouncedPopulateTable = debounce(populateTable, 300);
+
+function searchTable() {
+	const searchText = $("#search").val().toLowerCase();
+
+	const filteredTeams = allTeams.filter((team) => {
+		return (
+			team.team_name.toLowerCase().includes(searchText) ||
+			team.foundation_year.toString().toLowerCase().includes(searchText) ||
+			team.country.toLowerCase().includes(searchText)
+		);
+	});
+
+	// Update the table with the filtered users
+	debouncedPopulateTable(filteredTeams);
+}
