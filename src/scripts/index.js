@@ -149,12 +149,17 @@ function searchTable() {
 }
 
 function showModal() {
+	const errors = $("#errors");
+	errors.empty();
+
 	const modal = new bootstrap.Modal(document.getElementById("modal"), {});
 	modal.show();
 }
 
 function closeModal() {
-	const modal = new bootstrap.Modal(document.getElementById("modal"), {});
+	const modalId = document.getElementById("modal");
+	const modal = bootstrap.Modal.getInstance(modalId);
+
 	modal.hide();
 }
 
@@ -179,8 +184,7 @@ function updateUser() {
 			birthdate: birthdate,
 			role,
 		},
-		success: function (data) {
-			console.log(data);
+		success: async function (data) {
 			if (data.status === "error") {
 				data.message.forEach((error) => {
 					const html = `<div class="form-error text-danger">${error}</div>`;
@@ -189,7 +193,8 @@ function updateUser() {
 				});
 			}
 			if (data.status == "success") {
-				// Update the global variable by removing the deleted user
+				const users = await getUsers();
+				populateTable(users);
 				closeModal();
 			}
 		},

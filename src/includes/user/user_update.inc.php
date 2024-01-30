@@ -37,8 +37,7 @@ if (isset($_POST['id']) && $username = $_POST["username"] && $email = $_POST["em
             die();
         }
 
-        $pdo = null;
-        $stm = null;
+        updateUserData($pdo, $id, $username, $email, $role, $birthdate);
         header('Content-Type: application/json');
         // Send a success response
         echo json_encode(['status' => 'success', 'message' => 'User updated successfully']);

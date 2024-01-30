@@ -45,3 +45,16 @@ function getEmail(object $pdo, string $email)
 
     return $result;
 }
+
+function updateUser(object $pdo, string $id, string $username, string $email, string $role, string $birthdate)
+{
+
+    $query = "UPDATE users SET username = :username, email = :email, birthdate = :birthdate, role = :role WHERE user_id = :user_id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':user_id', $id);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':birthdate', $birthdate);
+    $stmt->bindParam(':role', $role);
+    $stmt->execute();
+}
