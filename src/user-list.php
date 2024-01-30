@@ -25,7 +25,7 @@ if (!isset($_SESSION["user_id"])) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
         <!-- JS -->
-        <script src="scripts/index.js"></script>
+        <script src="scripts/userData.js"></script>
 
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -51,14 +51,14 @@ if (!isset($_SESSION["user_id"])) {
 
     <div class="main-container">
         <div class="container">
-            <div class="input-group mb-5" id="search-container">
+            <div class="input-group mb-3" id="search-container">
                 <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
                 </span>
                 <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Username" aria-label="search" aria-describedby="basic-addon1">
             </div>
-            <table class="table" id="user-table">
+            <table class="table table-bordered text-center" id="user-table">
                 <thead>
-                    <tr>
+                    <tr class="table-header">
                         <th scope="col">#</th>
                         <th scope="col">Username</th>
                         <th scope="col">Email</th>

@@ -47,19 +47,19 @@ include './includes/reusable_views.inc.php';
 
     <div class="main-container">
         <div class="container">
-            <div class="input-group mb-5" id="search-container">
+            <div class="input-group mb-3" id="search-container">
                 <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
                 </span>
-                <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Username" aria-label="search" aria-describedby="basic-addon1">
+                <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Name" aria-label="search" aria-describedby="basic-addon1">
             </div>
-            <table class="table" id="user-table">
+            <table class="table text-center" id="user-table">
                 <thead>
-                    <tr>
+                    <tr class="table-header">
                         <th scope="col">#</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Position</th>
                         <th scope="col">Birthdate</th>
-                        <th scope="col">Role</th>
+                        <th scope="col">Team</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>

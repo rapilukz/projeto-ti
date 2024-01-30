@@ -17,11 +17,12 @@ include './includes/reusable_views.inc.php';
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/table.css" />
 
+        <!-- JS -->
+        <script src="./scripts/profileData.js" defer></script>
+
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-        <!-- JS -->
-        <script src="scripts/index.js"></script>
 
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -29,6 +30,9 @@ include './includes/reusable_views.inc.php';
 
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+        <!-- JS -->
+        <script src="scripts/teamData.js"></script>
     </head>
     <title>Projeto TI</title>
 </head>
@@ -47,19 +51,21 @@ include './includes/reusable_views.inc.php';
 
     <div class="main-container">
         <div class="container">
-            <div class="input-group mb-5" id="search-container">
-                <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
-                </span>
-                <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Username" aria-label="search" aria-describedby="basic-addon1">
+            <div class="d-flex mb-3 justify-content-between">
+                <button class="btn btn-primary insert-button"><i class="fa fa-plus"></i>
+                    Insert</button>
+                <div class="input-group" id="search-container">
+                    <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Name" aria-label="search">
+                    <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
+                </div>
             </div>
-            <table class="table" id="user-table">
+            <table class="table table-bordered text-center" id="team-table">
                 <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Birthdate</th>
-                        <th scope="col">Role</th>
+                    <tr class="table-header">
+                        <th class="fw-lighter" scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Foundation Year</th>
+                        <th scope="col">Country</th>
                         <th scope="col">Edit</th>
                         <th scope="col">Delete</th>
                     </tr>
@@ -104,11 +110,6 @@ include './includes/reusable_views.inc.php';
             </div>
         </div>
     </div>
-
-
-    <script>
-        fillUsersTable();
-    </script>
 </body>
 
 </html>

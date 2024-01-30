@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 --
-CREATE TABLE IF NOT EXISTS Team (
+CREATE TABLE IF NOT EXISTS Teams (
     team_id INT AUTO_INCREMENT PRIMARY KEY,
     team_name VARCHAR(100) NOT NULL,
     foundation_year INT,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS Team (
 
 -- Mock data for Team Table
 INSERT INTO
-    Team (team_name, foundation_year, country)
+    teams (team_name, foundation_year, country)
 VALUES
     ('Real Madrid', 1902, 'Spain'),
     ('Manchester United', 1878, 'England'),
@@ -29,17 +29,17 @@ VALUES
     ('Bayern Munich', 1900, 'Germany'),
     ('AC Milan', 1899, 'Italy');
 
-CREATE TABLE IF NOT EXISTS Player (
+CREATE TABLE IF NOT EXISTS players (
     player_id INT AUTO_INCREMENT PRIMARY KEY,
     player_name VARCHAR(100) NOT NULL,
     position VARCHAR(50),
     birthdate DATE,
     team_id INT,
-    FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE
+    FOREIGN KEY (team_id) REFERENCES teams(team_id) ON DELETE CASCADE
 );
 
 INSERT INTO
-    Player (player_name, position, birthdate, team_id)
+    players (player_name, position, birthdate, team_id)
 VALUES
     ('Cristiano Ronaldo', 'Forward', '1985-02-05', 1),
     ('Lionel Messi', 'Forward', '1987-06-24', 3),
@@ -47,19 +47,19 @@ VALUES
     ('Robert Lewandowski', 'Striker', '1988-08-21', 4),
     ('Zlatan Ibrahimović', 'Striker', '1981-10-03', 2);
 
-CREATE TABLE IF NOT EXISTS Trainer (
+CREATE TABLE IF NOT EXISTS trainers (
     trainer_id INT AUTO_INCREMENT PRIMARY KEY,
     trainer_name VARCHAR(100) NOT NULL,
     coaching_license VARCHAR(50),
     team_id INT,
-    FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE
+    FOREIGN KEY (team_id) REFERENCES teams(team_id) ON DELETE
     SET
         NULL
 );
 
 -- Mock data for Trainer Table
 INSERT INTO
-    Trainer (trainer_name, coaching_license, team_id)
+    trainers (trainer_name, coaching_license, team_id)
 VALUES
     ('Zinedine Zidane', 'UEFA Pro', 1),
     ('Ole Gunnar Solskjær', 'UEFA A', 2),
@@ -80,4 +80,4 @@ FROM
 SELECT
     *
 FROM
-    trainer;
+    teams;
