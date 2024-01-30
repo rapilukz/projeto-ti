@@ -8,6 +8,6 @@ use `projeto-ti`;
 --     password VARCHAR(255) NOT NULL,
 --     birthdate DATE,
 --     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
-
+--     role VARCHAR(50) DEFAULT 'user'
+-- )
 select * from users;
