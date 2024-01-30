@@ -2,16 +2,16 @@ CREATE DATABASE IF NOT EXISTS `projeto-ti`;
 
 USE `projeto-ti`;
 
--- CREATE TABLE IF NOT EXISTS users (
---     user_id INT AUTO_INCREMENT PRIMARY KEY,
---     username VARCHAR(50) NOT NULL,
---     email VARCHAR(100) NOT NULL,
---     password VARCHAR(255) NOT NULL,
---     birthdate DATE,
---     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
---     role VARCHAR(50) DEFAULT 'user'
--- )
+CREATE TABLE IF NOT EXISTS users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    PASSWORD VARCHAR(255) NOT NULL,
+    birthdate DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP role VARCHAR(50) DEFAULT 'user'
+);
 
+--
 CREATE TABLE IF NOT EXISTS Team (
     team_id INT AUTO_INCREMENT PRIMARY KEY,
     team_name VARCHAR(100) NOT NULL,
@@ -20,7 +20,9 @@ CREATE TABLE IF NOT EXISTS Team (
 );
 
 -- Mock data for Team Table
-INSERT INTO Team (team_name, foundation_year, country) VALUES
+INSERT INTO
+    Team (team_name, foundation_year, country)
+VALUES
     ('Real Madrid', 1902, 'Spain'),
     ('Manchester United', 1878, 'England'),
     ('FC Barcelona', 1899, 'Spain'),
@@ -36,7 +38,9 @@ CREATE TABLE IF NOT EXISTS Player (
     FOREIGN KEY (team_id) REFERENCES Team(team_id) ON DELETE CASCADE
 );
 
-INSERT INTO Player (player_name, position, birthdate, team_id) VALUES
+INSERT INTO
+    Player (player_name, position, birthdate, team_id)
+VALUES
     ('Cristiano Ronaldo', 'Forward', '1985-02-05', 1),
     ('Lionel Messi', 'Forward', '1987-06-24', 3),
     ('Neymar Jr.', 'Forward', '1992-02-05', 3),
@@ -52,16 +56,28 @@ CREATE TABLE IF NOT EXISTS Trainer (
     SET
         NULL
 );
+
 -- Mock data for Trainer Table
-INSERT INTO Trainer (trainer_name, coaching_license, team_id) VALUES
+INSERT INTO
+    Trainer (trainer_name, coaching_license, team_id)
+VALUES
     ('Zinedine Zidane', 'UEFA Pro', 1),
     ('Ole Gunnar Solskjær', 'UEFA A', 2),
     ('Ronald Koeman', 'UEFA Pro', 3),
     ('Hansi Flick', 'UEFA Pro', 4),
     ('Stefano Pioli', 'UEFA Pro', 5);
-    
-    
-    
-select * from trainer;
-select * from player;
-select * from trainer;
+
+SELECT
+    *
+FROM
+    trainer;
+
+SELECT
+    *
+FROM
+    player;
+
+SELECT
+    *
+FROM
+    trainer;

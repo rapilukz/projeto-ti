@@ -2,10 +2,6 @@
 <?php
 session_start();
 include './includes/reusable_views.inc.php';
-
-if (!isset($_SESSION["user_id"])) {
-    header("Location: ./index.php");
-}
 ?>
 <html lang="en">
 

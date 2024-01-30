@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once 'includes/login/login_view.inc.php';
+include './includes/reusable_views.inc.php';
 session_start();
 ?>
 <html lang="en">
@@ -37,6 +37,7 @@ session_start();
 		<h1><a class="logo-text" href="#">Projeto Final</a></h1>
 		<nav class="main-navbar">
 			<?php
+			render_main_pages();
 			output_user();
 			?>
 
