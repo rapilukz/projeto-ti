@@ -20,6 +20,7 @@ if (!isset($_SESSION["user_id"])) {
         <!-- CSS  -->
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/table.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -34,6 +35,7 @@ if (!isset($_SESSION["user_id"])) {
 
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     </head>
     <title>Projeto TI</title>
 </head>
@@ -52,10 +54,12 @@ if (!isset($_SESSION["user_id"])) {
 
     <div class="main-container">
         <div class="container">
-            <div class="input-group mb-3" id="search-container">
-                <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
-                </span>
-                <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Username" aria-label="search" aria-describedby="basic-addon1">
+            <div class="d-flex justify-content-end">
+                <div class="input-group mb-3" id="search-container">
+                    <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                    <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Username" aria-label="search" aria-describedby="basic-addon1">
+                </div>
             </div>
             <table class="table table-bordered text-center" id="user-table">
                 <thead>

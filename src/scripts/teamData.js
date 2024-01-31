@@ -1,108 +1,67 @@
-let allTeams = [];
-
 $(document).ready(() => {
-	fillTeamsTable();
+	fillTable();
+
+	/*          <button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
+                    Insert</button> */
+
+	$("#team-table_length")
+		.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
+	Insert</button> `);
 });
 
-function getTeams() {
-	return new Promise(function (resolve, reject) {
-		$.ajax({
-			type: "POST",
+function fillTable() {
+	$("#team-table").DataTable({
+		lengthMenu: [
+			[-1, 3, 5, 10],
+			["All", 3, 5, 10],
+		],
+		language: {
+			search: "_INPUT_",
+			searchPlaceholder: "Search...",
+			sLengthMenu: "_MENU_",
+		},
+		processing: true,
+		serverSide: true,
+		serverMethod: "POST",
+		ajax: {
 			url: "./includes/teams/team_list.inc.php",
-			dataType: "json",
-			success: function (response) {
-				allTeams = response;
-				resolve(response);
+		},
+		columns: [
+			{ data: "team_id" },
+			{ data: "team_name" },
+			{ data: "foundation_year" },
+			{ data: "country" },
+			{
+				data: {
+					id: "team_id",
+					name: "team_name",
+					foundation_year: "foundation_year",
+					country: "contry",
+				},
+				render: function (data) {
+					return renderButtons(data);
+				},
+				className: "actions-row",
 			},
-			error: function (xhr, status, error) {
-				console.error("Error: " + status);
-				reject(error);
-			},
-		});
+		],
 	});
 }
 
-async function fillTeamsTable() {
-	// Use the global variable instead of calling getUsers directly
-	const teams = await getTeams();
-	populateTable(teams);
+function renderButtons(data) {
+	console.log(data);
+
+	return `<button class='btn btn-primary btn-sm edit-button' onclick='showTeamEditModal(${data})'><i class='fa-solid fa-pencil'></i>Edit</button>
+		<button class='btn btn-danger btn-sm delete-button' onclick='deleteTeam(${data});'><i class='fa-solid fa-trash-can'></i>Delete</button>`;
 }
 
-function populateTable(data) {
-	clearTable();
-	const tableBody = $("#team-table tbody");
-
-	data.forEach((row) => {
-		let newRow = $(`<tr data-team-id=` + row.team_id + `>`);
-
-		// Populate the row with team data
-		newRow.append(
-			"<th class='text-white' scope='row'>" + row.team_id + "</th>"
-		);
-		newRow.append("<td class='text-white'>" + row.team_name + "</td>");
-		newRow.append("<td class='text-white'>" + row.foundation_year + "</td>");
-		newRow.append("<td class='text-white'>" + row.country + "</td>");
-
-		// Add an Edit and Delete button for each team
-		newRow.append(
-			`<td class="d-flex justify-content-center gap-3">
-				<button class='btn btn-primary btn-sm edit-button' onclick='showTeamEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>
-				<button class='btn btn-danger btn-sm delete-button' onclick='deleteTeam(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>
-			</td>`
-		);
-
-		// Append the row to the table
-		tableBody.append(newRow);
-	});
-}
-
-function clearTable() {
-	$("#team-table tbody").empty();
-}
-
-function debounce(func, delay) {
-	let timeoutId;
-	return function () {
-		const context = this;
-		const args = arguments;
-		clearTimeout(timeoutId);
-		timeoutId = setTimeout(() => {
-			func.apply(context, args);
-		}, delay);
-	};
-}
-
-const debouncedPopulateTable = debounce(populateTable, 300);
-
-function searchTable() {
-	const searchText = $("#search").val().toLowerCase();
-
-	const filteredTeams = allTeams.filter((team) => {
-		return (
-			team.team_name.toLowerCase().includes(searchText) ||
-			team.foundation_year.toString().toLowerCase().includes(searchText) ||
-			team.country.toLowerCase().includes(searchText)
-		);
-	});
-
-	// Update the table with the filtered teams
-	debouncedPopulateTable(filteredTeams);
-}
-
-function getTeamId(event) {
-	return $(event.target).closest("tr").attr("data-team-id");
-}
-
-function deleteTeam(event) {
+function deleteTeam(id) {
 	if (!confirm("Do you want to delete this team?")) return false;
-
-	const team_id = getTeamId(event);
 
 	$.ajax({
 		url: "./includes/teams/team_delete.inc.php",
 		method: "POST",
 		dataType: "json",
-		data: { id: team_id },
+		data: { id: id },
 		success: function (data) {
 			if (data.status == "error") {
 				console.log(data);
@@ -122,21 +81,21 @@ function deleteTeam(event) {
 	});
 }
 
-function showTeamEditModal(event) {
+function showTeamEditModal(id) {
 	document.querySelector(".modal-title").innerHTML = "Edit Team";
-	const team_id = getTeamId(event);
-	const teamData = allTeams.find((team) => team.team_id.toString() === team_id);
+	const teamData = allTeams.find((team) => team.team_id.toString() === id);
 
 	showModal();
 	renderModalData(teamData);
 }
 
 function renderModalData(data) {
-	$("#name").val(data.team_name);
+	console.log(data);
+	/* $("#name").val(data.team_name);
 	$("#foundation-year").val(data.foundation_year);
 	$("#country").val(data.country);
 	document.getElementById("modal").setAttribute("team-id", data.team_id);
-	document.getElementById("edit-button").addEventListener("click", updateTeam);
+	document.getElementById("edit-button").addEventListener("click", updateTeam); */
 }
 
 function clearModalData() {
