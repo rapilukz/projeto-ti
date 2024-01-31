@@ -118,3 +118,34 @@ tr {
 .actions-row .edit-button {
 	margin-right: 0.5rem;
 }
+
+#team-table_info {
+	color: #edf0f1;
+}
+
+#team-table_paginate,
+#team-table_next,
+#team-table_previous {
+	color: #edf0f1 !important;
+}
+
+#team-table_previous:not(.disabled):hover,
+#team-table_next:not(.disabled):hover {
+	color: var(--color1) !important;
+	background: none !important;
+	border: none !important;
+	cursor: pointer;
+}
+
+.paginate_button.current {
+	background: var(--color1) !important;
+	border: 1px solid var(--color1) !important;
+	border-radius: 0.25rem;
+	cursor: pointer !important;
+}
+
+span .paginate_button:not(.current):hover {
+	background: none !important;
+	border: 1px solid var(--color1) !important;
+	border-radius: 0.25rem;
+}
