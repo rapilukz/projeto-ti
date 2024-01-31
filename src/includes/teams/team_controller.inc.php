@@ -38,5 +38,5 @@ function updateTeamData(object $pdo, string $id, string $name, string $year, str
 
 function insertTeamData(object $pdo, string $name, string $year,  string $country)
 {
-    insertTeam($pdo, $name, $year, $country);
+    return insertTeam($pdo, $name, $year, $country);
 }

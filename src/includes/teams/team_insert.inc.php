@@ -31,11 +31,11 @@ if (isset($_POST["name"]) && isset($_POST["year"]) && isset($_POST["country"])) 
             die();
         }
 
-        insertTeamData($pdo, $name, $year, $country);
+        $result = insertTeamData($pdo, $name, $year, $country);
 
         header('Content-Type: application/json');
         // Send a success response
-        echo json_encode(['status' => 'success', 'message' => 'Team inserted successfully']);
+        echo json_encode(['status' => 'success', 'message' => $result]);
         die();
     } catch (PDOException $e) {
         echo json_encode(['status' => 'error', 'message' => 'Error inserting team: ' . $e->getMessage()]);

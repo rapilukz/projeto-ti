@@ -186,6 +186,7 @@ function insertTeam() {
 				renderModalErrors(data.message);
 			}
 			if (data.status == "success") {
+				insertNewRow(data.message);
 				closeModal();
 				document
 					.getElementById("edit-button")
@@ -197,4 +198,18 @@ function insertTeam() {
 			console.error("Error: " + status);
 		},
 	});
+}
+
+function insertNewRow(data) {
+	const table = $("#team-table").DataTable();
+
+	// Add a new row to the DataTable
+	const newRowData = {
+		team_id: data.team_id,
+		team_name: data.team_name,
+		foundation_year: data.foundation_year,
+		country: data.country,
+	};
+
+	const newRow = table.row.add(newRowData).draw().node();
 }

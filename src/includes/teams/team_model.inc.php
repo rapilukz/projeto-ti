@@ -52,4 +52,18 @@ function insertTeam(object $pdo, string $name, string $year, string $country)
     $stmt->bindParam(':foundation_year', $year);
     $stmt->bindParam(':country', $country);
     $stmt->execute();
+
+    // Fetch the last inserted ID
+    $lastInsertId = $pdo->lastInsertId();
+
+    // Fetch the entire row based on the last inserted ID
+    $selectQuery = "SELECT * FROM teams WHERE team_id = :lastInsertId";
+    $selectStmt = $pdo->prepare($selectQuery);
+    $selectStmt->bindParam(':lastInsertId', $lastInsertId);
+    $selectStmt->execute();
+
+    // Fetch the inserted data
+    $insertedData = $selectStmt->fetch(PDO::FETCH_ASSOC);
+
+    return $insertedData;
 }
