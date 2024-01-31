@@ -45,11 +45,10 @@ function populateTable(data) {
 
 		// Add an Edit and Delete button for each team
 		newRow.append(
-			`<td><button class='btn btn-primary btn-sm edit-button' onclick='showTeamEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button></td>`
-		);
-
-		newRow.append(
-			`<td><button class='btn btn-danger btn-sm delete-button' onclick='deleteTeam(event);'><i class='fa-solid fa-trash-can'></i>Delete</button></td>`
+			`<td class="d-flex justify-content-center gap-3">
+				<button class='btn btn-primary btn-sm edit-button' onclick='showTeamEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>
+				<button class='btn btn-danger btn-sm delete-button' onclick='deleteTeam(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>
+			</td>`
 		);
 
 		// Append the row to the table

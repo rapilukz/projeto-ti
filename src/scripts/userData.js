@@ -99,16 +99,17 @@ function populateTable(data) {
 		newRow.append("<td class='text-white'>" + row.role + "</td>");
 
 		// Add an Edit and Delete button for each user
-		newRow.append(
-			`<td><button class='btn btn-primary btn-sm edit-button' onclick='showUseEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button></td>`
-		);
+
 		// Prevents deleting the current user
-		if (row.same_user) {
-			newRow.append(`<td></td>`);
+		if (!row.same_user) {
+			newRow.append(`<td class="d-flex justify-content-center gap-3">
+				<button class='btn btn-primary btn-sm edit-button' onclick='showUseEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>
+				<button class='btn btn-danger btn-sm delete-button' onclick='deleteUser(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>
+			</td>`);
 		} else {
-			newRow.append(
-				`<td><button class='btn btn-danger btn-sm delete-button' onclick='deleteUser(event);'><i class='fa-solid fa-trash-can'></i>Delete</button></td>`
-			);
+			newRow.append(`<td class="d-flex">
+				<button class='btn btn-primary btn-sm edit-button' style="margin-left: 1.4rem;" onclick='showUseEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>
+			</td>`);
 		}
 
 		// Append the row to the table
@@ -116,9 +117,7 @@ function populateTable(data) {
 	});
 }
 
-function clearTable() {
-	$("#user-table tbody").empty();
-}
+function clearTable() {}
 
 function debounce(func, delay) {
 	let timeoutId;

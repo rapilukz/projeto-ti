@@ -63,12 +63,11 @@ include './includes/reusable_views.inc.php';
             <table class="table table-bordered text-center" id="team-table">
                 <thead>
                     <tr class="table-header">
-                        <th class="fw-lighter" scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Foundation Year</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <th class="fw-lighter col-2" scope="col">#</th>
+                        <th class="col-2">Name</th>
+                        <th class="col-2">Foundation Year</th>
+                        <th class="col-2">Country</th>
+                        <th class="col-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

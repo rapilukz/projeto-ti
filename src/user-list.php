@@ -60,13 +60,12 @@ if (!isset($_SESSION["user_id"])) {
             <table class="table table-bordered text-center" id="user-table">
                 <thead>
                     <tr class="table-header">
-                        <th scope="col">#</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Birthdate</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <th class="col-2">#</th>
+                        <th class="col-2">Username</th>
+                        <th class="col-2">Email</th>
+                        <th class="col-2">Birthdate</th>
+                        <th class="col-2">Role</th>
+                        <th class="col-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
