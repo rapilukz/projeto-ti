@@ -1,9 +1,6 @@
 $(document).ready(() => {
 	fillTable();
 
-	/*          <button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
-                    Insert</button> */
-
 	$("#team-table_length")
 		.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
 	Insert</button> `);
@@ -48,14 +45,14 @@ function fillTable() {
 }
 
 function renderButtons(data) {
-	console.log(data);
-
-	return `<button class='btn btn-primary btn-sm edit-button' onclick='showTeamEditModal(${data})'><i class='fa-solid fa-pencil'></i>Edit</button>
-		<button class='btn btn-danger btn-sm delete-button' onclick='deleteTeam(${data});'><i class='fa-solid fa-trash-can'></i>Delete</button>`;
+	return `<button id="${data.team_id}" class="btn btn-primary btn-sm edit-button" onclick='showTeamEditModal()'><i class='fa-solid fa-pencil'></i>Edit</button>
+		<button id="${data.team_id}" class="btn btn-danger btn-sm delete-button" onclick='deleteTeam(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>`;
 }
 
-function deleteTeam(id) {
+function deleteTeam(event) {
 	if (!confirm("Do you want to delete this team?")) return false;
+
+	const id = $(event.target).attr("id");
 
 	$.ajax({
 		url: "./includes/teams/team_delete.inc.php",
@@ -68,11 +65,7 @@ function deleteTeam(id) {
 			}
 
 			if (data.status == "success") {
-				allTeams = allTeams.filter((team) => team.team_id !== team_id);
-
-				$("#team-table tbody")
-					.find("tr[data-team-id='" + team_id + "']")
-					.remove();
+				$(event.target).closest("tr").remove();
 			}
 		},
 		error: function (xhr, status, error) {
@@ -90,7 +83,6 @@ function showTeamEditModal(id) {
 }
 
 function renderModalData(data) {
-	console.log(data);
 	/* $("#name").val(data.team_name);
 	$("#foundation-year").val(data.foundation_year);
 	$("#country").val(data.country);
