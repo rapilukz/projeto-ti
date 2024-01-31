@@ -54,13 +54,13 @@ include './includes/reusable_views.inc.php';
     <div class="main-container">
         <div class="container">
 
-            <table class="table table-bordered text-center" id="team-table">
+            <table class="table text-center" id="team-table">
                 <thead>
                     <tr class="table-header">
-                        <th class="fw-lighter col-2" scope="col">#</th>
-                        <th class="col-2">Name</th>
-                        <th class="col-2">Foundation Year</th>
-                        <th class="col-2">Country</th>
+                        <th class="fw-lighter " scope="col">#</th>
+                        <th class="">Name</th>
+                        <th class="">Foundation Year</th>
+                        <th class="">Country</th>
                         <th class="col-2">Actions</th>
                     </tr>
                 </thead>

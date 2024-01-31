@@ -3,8 +3,13 @@ td {
 	color: #edf0f1 !important;
 }
 
-td {
-	border: 1px solid #edf0f1 !important;
+th {
+	text-align: center !important;
+}
+
+tr {
+	border-color: gray !important;
+	padding-top: 0.25rem;
 }
 
 .table-header {
