@@ -24,6 +24,29 @@ function renderModalErrors(errors) {
 	});
 }
 
+function getSession() {
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			url: "./includes/get_session.inc.php",
+			method: "POST",
+			dataType: "json",
+			success: function (data) {
+				if (data.status == "error") {
+					reject(data);
+				}
+
+				if (data.status == "success") {
+					resolve(data);
+				}
+			},
+			error: function (xhr, status, error) {
+				console.error("Error: " + status);
+				reject(error);
+			},
+		});
+	});
+}
+
 function fillTeamsDropdown() {
 	const teamInput = $("#team");
 

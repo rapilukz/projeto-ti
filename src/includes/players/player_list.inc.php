@@ -73,7 +73,7 @@ try {
             "position" => $row['position'],
             "birthdate" => $row['birthdate'],
             "team_id" => $row['team_id'],
-            "team_name" => $row['team_name']
+            "team_name" => $row['team_name'],
         );
     }
 

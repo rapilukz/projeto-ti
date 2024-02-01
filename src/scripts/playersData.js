@@ -1,13 +1,37 @@
-$(document).ready(() => {
-	fillTable();
+$(document).ready(async () => {
 	fillTeamsDropdown();
 
-	$("#players-table_length")
-		.prepend(`<button class="btn btn-primary insert-button" onclick="showInserPlayerModal()"><i class="fa fa-plus"></i>
-    Insert</button> `);
+	const session = await getSession();
+	const columns = [
+		{ data: "player_id", className: "id-row" },
+		{ data: "player_name", className: "name-row" },
+		{ data: "position", className: "position-row" },
+		{ data: "birthdate", className: "birthdate-row" },
+		{ data: "team_name", className: "team-row" },
+	];
+
+	if (session.message) {
+		$("#players-table_length")
+			.prepend(`<button class="btn btn-primary insert-button" onclick="showInserPlayerModal()"><i class="fa fa-plus"></i>
+		Insert</button> `);
+
+		columns.push({
+			data: {
+				player_id: "player_id",
+			},
+			render: function (data) {
+				return renderButtons(data);
+			},
+			className: "actions-row",
+		});
+	} else {
+		$("#actions").remove();
+	}
+
+	fillTable(columns);
 });
 
-function fillTable() {
+function fillTable(columns) {
 	$("#players-table").DataTable({
 		lengthMenu: [
 			[-1, 3, 5, 10],
@@ -25,22 +49,7 @@ function fillTable() {
 		ajax: {
 			url: "./includes/players/player_list.inc.php",
 		},
-		columns: [
-			{ data: "player_id", className: "id-row" },
-			{ data: "player_name", className: "name-row" },
-			{ data: "position", className: "position-row" },
-			{ data: "birthdate", className: "birthdate-row" },
-			{ data: "team_name", className: "team-row" },
-			{
-				data: {
-					player_id: "player_id",
-				},
-				render: function (data) {
-					return renderButtons(data);
-				},
-				className: "actions-row",
-			},
-		],
+		columns: columns,
 	});
 }
 
@@ -137,13 +146,7 @@ function updatePlayer() {
 		url: "./includes/players/player_update.inc.php",
 		method: "POST",
 		dataType: "json",
-		data: {
-			id,
-			name,
-			position,
-			birthdate,
-			team,
-		},
+		data: updateData,
 		success: async function (data) {
 			if (data.status === "error") {
 				renderModalErrors(data.message);

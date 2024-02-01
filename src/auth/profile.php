@@ -27,6 +27,10 @@ if (!isset($_SESSION["user_id"])) {
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <!-- Js -->
+    <script src="../scripts/generics.js"></script>
+    <script src="../scripts/userProfile.js"></script>
 </head>
 
 <body>
@@ -70,7 +74,7 @@ if (!isset($_SESSION["user_id"])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="updateUserProfile()" class="btn btn-primary edit-button"><i class="fas fa-save"></i>Save</button>
+                    <button type="button" id="edit-button" onclick="updateUser()" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
                 </div>
             </div>
         </div>

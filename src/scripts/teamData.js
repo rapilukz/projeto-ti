@@ -1,12 +1,35 @@
-$(document).ready(() => {
-	fillTable();
+$(document).ready(async () => {
+	const session = await getSession();
 
-	$("#team-table_length")
-		.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
-	Insert</button> `);
+	const columns = [
+		{ data: "team_id", className: "id-row" },
+		{ data: "team_name", className: "name-row" },
+		{ data: "foundation_year", className: "year-row" },
+		{ data: "country", className: "country-row" },
+	];
+
+	if (session.message) {
+		$("#team-table_length")
+			.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
+		Insert</button> `);
+
+		columns.push({
+			data: {
+				id: "team_id",
+			},
+			render: function (data) {
+				return renderButtons(data);
+			},
+			className: "actions-row",
+		});
+	} else {
+		$("#actions").remove();
+	}
+
+	fillTable(columns);
 });
 
-function fillTable() {
+function fillTable(columns) {
 	$("#team-table").DataTable({
 		lengthMenu: [
 			[-1, 3, 5, 10],
@@ -24,21 +47,7 @@ function fillTable() {
 		ajax: {
 			url: "./includes/teams/team_list.inc.php",
 		},
-		columns: [
-			{ data: "team_id", className: "id-row" },
-			{ data: "team_name", className: "name-row" },
-			{ data: "foundation_year", className: "year-row" },
-			{ data: "country", className: "country-row" },
-			{
-				data: {
-					id: "team_id",
-				},
-				render: function (data) {
-					return renderButtons(data);
-				},
-				className: "actions-row",
-			},
-		],
+		columns: columns,
 	});
 }
 
@@ -130,12 +139,7 @@ function updateTeam() {
 		url: "./includes/teams/team_update.inc.php",
 		method: "POST",
 		dataType: "json",
-		data: {
-			id,
-			name,
-			year,
-			country,
-		},
+		data: updateData,
 		success: async function (data) {
 			if (data.status === "error") {
 				renderModalErrors(data.message);

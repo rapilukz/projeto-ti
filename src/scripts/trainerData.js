@@ -1,13 +1,37 @@
-$(document).ready(() => {
-	fillTable();
+$(document).ready(async () => {
 	fillTeamsDropdown();
 
-	$("#trainer-table_length")
-		.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTrainerModal()"><i class="fa fa-plus"></i>
-    Insert</button> `);
+	const session = await getSession();
+
+	const columns = [
+		{ data: "trainer_id", className: "id-row" },
+		{ data: "trainer_name", className: "name-row" },
+		{ data: "coaching_license", className: "license-row" },
+		{ data: "team_name", className: "team-row" },
+	];
+
+	if (session.message) {
+		$("#trainer-table_length")
+			.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTrainerModal()"><i class="fa fa-plus"></i>
+		Insert</button> `);
+
+		columns.push({
+			data: {
+				trainer_id: "trainer_id",
+			},
+			render: function (data) {
+				return renderButtons(data);
+			},
+			className: "actions-row",
+		});
+	} else {
+		$("#actions").remove();
+	}
+
+	fillTable(columns);
 });
 
-function fillTable() {
+function fillTable(columns) {
 	$("#trainer-table").DataTable({
 		lengthMenu: [
 			[-1, 3, 5, 10],
@@ -25,27 +49,13 @@ function fillTable() {
 		ajax: {
 			url: "./includes/trainers/trainer_list.inc.php",
 		},
-		columns: [
-			{ data: "trainer_id", className: "id-row" },
-			{ data: "trainer_name", className: "name-row" },
-			{ data: "coaching_license", className: "license-row" },
-			{ data: "team_name", className: "team-row" },
-			{
-				data: {
-					trainer_id: "trainer_id",
-				},
-				render: function (data) {
-					return renderButtons(data);
-				},
-				className: "actions-row",
-			},
-		],
+		columns: columns,
 	});
 }
 
 function renderButtons(data) {
 	return `<button id="row-${data.trainer_id}" class="btn btn-primary btn-sm edit-button" onclick='showEditTrainerModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>
-		<button id="row-${data.trainer_id}" class="btn btn-danger btn-sm delete-button" onclick='deleteTrainer(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>`;
+			<button id="row-${data.trainer_id}" class="btn btn-danger btn-sm delete-button" onclick='deleteTrainer(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>`;
 }
 
 function deleteTrainer(event) {
@@ -179,12 +189,7 @@ function updateTrainer() {
 		url: "./includes/trainers/trainer_update.inc.php",
 		method: "POST",
 		dataType: "json",
-		data: {
-			id,
-			name,
-			license,
-			team,
-		},
+		data: updateData,
 		success: async function (data) {
 			if (data.status === "error") {
 				renderModalErrors(data.message);

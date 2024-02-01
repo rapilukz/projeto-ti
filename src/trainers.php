@@ -60,7 +60,7 @@ include './includes/reusable_views.inc.php';
                         <th scope="col">Name</th>
                         <th scope="col">License</th>
                         <th scope="col">Team</th>
-                        <th class="col-2">Actions</th>
+                        <th id="actions" class="col-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

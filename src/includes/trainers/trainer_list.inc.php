@@ -70,7 +70,7 @@ try {
             "trainer_name" => $row['trainer_name'],
             "coaching_license" => $row['coaching_license'],
             "team_id" => $row['team_id'],
-            "team_name" => $row['team_name']
+            "team_name" => $row['team_name'],
         );
     }
 

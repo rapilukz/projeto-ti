@@ -126,9 +126,6 @@ function renderModalData(data) {
 }
 
 function updateUser() {
-	const errors = $("#errors");
-	errors.empty();
-
 	const id = $("#modal").attr("user-id");
 	const username = $("#username").val();
 	const email = $("#email").val();
@@ -147,13 +144,7 @@ function updateUser() {
 		url: "./includes/user/user_update.inc.php",
 		method: "POST",
 		dataType: "json",
-		data: {
-			id: id,
-			username: username,
-			email: email,
-			birthdate: birthdate,
-			role,
-		},
+		data: updateData,
 		success: async function (data) {
 			if (data.status === "error") {
 				renderModalErrors(data.message);

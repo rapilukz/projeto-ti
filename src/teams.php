@@ -58,7 +58,7 @@ include './includes/reusable_views.inc.php';
                         <th class="">Name</th>
                         <th class="">Foundation Year</th>
                         <th class="">Country</th>
-                        <th class="col-2" data-orderable="false">Actions</th>
+                        <th id="actions" class="col-2" data-orderable="false">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
