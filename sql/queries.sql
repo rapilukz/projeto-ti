@@ -76,7 +76,7 @@ FROM
 SELECT
     *
 FROM
-    player;
+    players;
 
 SELECT
     *

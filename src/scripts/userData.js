@@ -52,9 +52,6 @@ function fillTable() {
 			{
 				data: {
 					id: "user_id",
-					username: "username",
-					email: "email",
-					country: "contry",
 				},
 				render: function (data) {
 					return renderButtons(data);

@@ -64,7 +64,7 @@ if (!isset($_SESSION["user_id"])) {
                         <th>Email</th>
                         <th>Birthdate</th>
                         <th>Role</th>
-                        <th class="col-2">Actions</th>
+                        <th class="col-2" data-orderable="false">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -32,9 +32,6 @@ function fillTable() {
 			{
 				data: {
 					id: "team_id",
-					name: "team_name",
-					foundation_year: "foundation_year",
-					country: "contry",
 				},
 				render: function (data) {
 					return renderButtons(data);

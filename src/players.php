@@ -16,12 +16,11 @@ include './includes/reusable_views.inc.php';
         <!-- CSS  -->
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/table.css" />
+        <link rel="stylesheet" href="css/playersTable.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-        <!-- JS -->
-        <script src="scripts/index.js"></script>
 
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -29,6 +28,11 @@ include './includes/reusable_views.inc.php';
 
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+
+        <!-- JS -->
+        <script src="scripts/generics.js"></script>
+        <script src="scripts/playersData.js"></script>
     </head>
     <title>Projeto TI</title>
 </head>
@@ -47,12 +51,7 @@ include './includes/reusable_views.inc.php';
 
     <div class="main-container">
         <div class="container">
-            <div class="input-group mb-3" id="search-container">
-                <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
-                </span>
-                <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Name" aria-label="search" aria-describedby="basic-addon1">
-            </div>
-            <table class="table text-center" id="user-table">
+            <table class="table text-center" id="players-table">
                 <thead>
                     <tr class="table-header">
                         <th scope="col">#</th>
@@ -60,8 +59,7 @@ include './includes/reusable_views.inc.php';
                         <th scope="col">Position</th>
                         <th scope="col">Birthdate</th>
                         <th scope="col">Team</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <th class="col-2" data-orderable="false">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -99,16 +97,11 @@ include './includes/reusable_views.inc.php';
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="updateUser()" class="btn btn-primary edit-button"><i class="fas fa-save"></i>Save</button>
+                    <button type="button" onclick="updatePlayer()" class="btn btn-primary edit-button"><i class="fas fa-save"></i>Save</button>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script>
-        fillUsersTable();
-    </script>
 </body>
 
 </html>
