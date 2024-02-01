@@ -1,7 +1,7 @@
 $(document).ready(async () => {
 	fillTeamsDropdown();
 
-	const session = await getSession();
+	const hasSession = await getSession();
 
 	const columns = [
 		{ data: "trainer_id", className: "id-row" },
@@ -10,7 +10,7 @@ $(document).ready(async () => {
 		{ data: "team_name", className: "team-row" },
 	];
 
-	if (session.message) {
+	if (hasSession) {
 		$("#trainer-table_length")
 			.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTrainerModal()"><i class="fa fa-plus"></i>
 		Insert</button> `);
@@ -29,6 +29,13 @@ $(document).ready(async () => {
 	}
 
 	fillTable(columns);
+
+	// needs to render after the data table is loaded
+	if (hasSession) {
+		$("#trainer-table_length")
+			.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTrainerModal()"><i class="fa fa-plus"></i>
+	Insert</button> `);
+	}
 });
 
 function fillTable(columns) {

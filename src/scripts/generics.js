@@ -36,7 +36,7 @@ function getSession() {
 				}
 
 				if (data.status == "success") {
-					resolve(data);
+					resolve(data.message);
 				}
 			},
 			error: function (xhr, status, error) {

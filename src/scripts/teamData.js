@@ -1,5 +1,5 @@
 $(document).ready(async () => {
-	const session = await getSession();
+	const hasSession = await getSession();
 
 	const columns = [
 		{ data: "team_id", className: "id-row" },
@@ -8,11 +8,7 @@ $(document).ready(async () => {
 		{ data: "country", className: "country-row" },
 	];
 
-	if (session.message) {
-		$("#team-table_length")
-			.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
-		Insert</button> `);
-
+	if (hasSession) {
 		columns.push({
 			data: {
 				id: "team_id",
@@ -27,6 +23,13 @@ $(document).ready(async () => {
 	}
 
 	fillTable(columns);
+
+	// needs to render after the data table is loaded
+	if (hasSession) {
+		$("#team-table_length")
+			.prepend(`<button class="btn btn-primary insert-button" onclick="showInserTeamModal()"><i class="fa fa-plus"></i>
+	Insert</button> `);
+	}
 });
 
 function fillTable(columns) {
