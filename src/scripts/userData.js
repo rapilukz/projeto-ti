@@ -70,7 +70,7 @@ function renderButtons(data) {
 		return `<button id="row-${data.user_id}" class="btn btn-primary btn-sm edit-button" onclick='showUseEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>`;
 	} else {
 		return `<button id="row-${data.user_id}"  class="btn btn-primary btn-sm edit-button" onclick='showUseEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>
-		<button id="${data.user_id}"  class="btn btn-danger btn-sm delete-button" onclick='deleteUser(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>`;
+		<button id="row-${data.user_id}"  class="btn btn-danger btn-sm delete-button" onclick='deleteUser(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>`;
 	}
 }
 
@@ -86,11 +86,7 @@ function deleteUser(event) {
 		data: { id: user_id },
 		success: function (data) {
 			if (data.status == "success") {
-				// Update the global variable by removing the deleted user
-
-				$("#user-table tbody")
-					.find("tr[data-user-id='" + user_id + "']")
-					.remove();
+				$(event.target).closest("tr").remove();
 			}
 		},
 		error: function (xhr, status, error) {
