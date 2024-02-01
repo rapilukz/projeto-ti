@@ -63,3 +63,16 @@ function getName(object $pdo, string $name)
 
     return $result;
 }
+
+function updateTrainer(object $pdo, string $id, string $name, string $license, $teamId)
+{
+    $query = "UPDATE trainers 
+                  SET trainer_name = :trainer_name, coaching_license = :coaching_license, trainer_id = :trainer_id
+                  WHERE team_id = :team_id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':trainer_name', $name);
+    $stmt->bindParam(':coaching_license', $license);
+    $stmt->bindParam(':team_id', $teamId);
+    $stmt->bindParam(':trainer_id', $id);
+    $stmt->execute();
+}

@@ -135,3 +135,80 @@ function insertNewRow(data) {
 
 	table.row.add(newRowData).draw().node();
 }
+
+function showEditTrainerModal(event) {
+	document.querySelector(".modal-title").innerHTML = "Edit Trainer";
+	const id = $(event.target).attr("id").split("-")[1];
+
+	const base = `#${id}`;
+	const trainerData = {
+		id: id,
+		name: $(`${base} td.name-row`).text(),
+		license: $(`${base} td.license-row`).text(),
+		team: $(`${base} td.team-row`).text(),
+	};
+
+	showModal();
+	renderModalData(trainerData);
+}
+
+function renderModalData(data) {
+	$("#name").val(data.name);
+	$("#license").val(data.license);
+	$("#team").val(data.team);
+	document.getElementById("modal").setAttribute("trainer-id", data.id);
+	document
+		.getElementById("edit-button")
+		.addEventListener("click", updateTrainer);
+}
+
+function updateTrainer() {
+	const id = $("#modal").attr("trainer-id");
+	const name = $("#name").val();
+	const license = $("#license").val();
+	const team = $("#team").val();
+
+	const updateData = {
+		id: id,
+		name: name,
+		license: license,
+		team: team,
+	};
+
+	$.ajax({
+		url: "./includes/trainers/trainer_update.inc.php",
+		method: "POST",
+		dataType: "json",
+		data: {
+			id,
+			name,
+			license,
+			team,
+		},
+		success: async function (data) {
+			if (data.status === "error") {
+				renderModalErrors(data.message);
+			}
+			if (data.status == "success") {
+				setNewData(updateData);
+				closeModal();
+				document
+					.getElementById("edit-button")
+					.removeEventListener("click", updatePlayer);
+				clearModalData();
+			}
+		},
+		error: function (xhr, status, error) {
+			console.error("Error: " + status);
+		},
+	});
+}
+
+function setNewData(data) {
+	const id = data.id;
+	const base = `#${id}`;
+
+	$(`${base} td.name-row`).text(data.name);
+	$(`${base} td.license-row`).text(data.position);
+	$(`${base} td.team-row`).text(data.team);
+}

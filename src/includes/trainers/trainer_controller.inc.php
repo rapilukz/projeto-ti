@@ -35,3 +35,9 @@ function nameIsTaken(object $pdo, string $name, $id)
         return false;
     }
 }
+
+
+function updateTrainerData(object $pdo, string $id, string $name, string $license, string $teamId)
+{
+    updateTrainer($pdo, $id, $name, $license, $teamId);
+}

@@ -12,6 +12,9 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(50) DEFAULT 'user'
 );
 
+-- Set First user to admin
+UPDATE users SET role = 'admin' ORDER BY user_id LIMIT 1;
+select * from users;
 --
 CREATE TABLE IF NOT EXISTS Teams (
     team_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -46,7 +49,7 @@ VALUES
     ('Lionel Messi', 'Forward', '1987-06-24', 3),
     ('Neymar Jr.', 'Forward', '1992-02-05', 3),
     ('Robert Lewandowski', 'Striker', '1988-08-21', 4),
-    ('Zlatan Ibrahimović', 'Striker', '1981-10-03', 12);
+    ('Zlatan Ibrahimović', 'Striker', '1981-10-03', 2);
 
 CREATE TABLE IF NOT EXISTS trainers (
     trainer_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -68,18 +71,5 @@ VALUES
     ('Hansi Flick', 'UEFA Pro', 4),
     ('Stefano Pioli', 'UEFA Pro', 5);
     
-SELECT
-    *
-FROM
-    trainers;
 
-SELECT
-    *
-FROM
-    players;
-
-SELECT
-    *
-FROM
-    teams;
     

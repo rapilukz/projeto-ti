@@ -76,7 +76,7 @@ function deletePlayer(event) {
 
 function showInserPlayerModal() {
 	clearModalData();
-	document.querySelector(".modal-title").innerHTML = "Insert Team";
+	document.querySelector(".modal-title").innerHTML = "Insert Player";
 	document
 		.getElementById("edit-button")
 		.addEventListener("click", insertPlayer);
@@ -84,7 +84,7 @@ function showInserPlayerModal() {
 }
 
 function showEditPlayerModal(event) {
-	document.querySelector(".modal-title").innerHTML = "Edit Team";
+	document.querySelector(".modal-title").innerHTML = "Edit Player";
 	const id = $(event.target).attr("id").split("-")[1];
 
 	const base = `#${id}`;
