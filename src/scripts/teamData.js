@@ -161,10 +161,6 @@ function showInserTeamModal() {
 	showModal();
 }
 function insertTeam() {
-	document
-		.getElementById("edit-button")
-		.removeEventListener("click", insertTeam);
-
 	const name = $("#name").val();
 	const year = $("#foundation-year").val();
 	const country = $("#country").val();
@@ -208,5 +204,5 @@ function insertNewRow(data) {
 		country: data.country,
 	};
 
-	const newRow = table.row.add(newRowData).draw().node();
+	table.row.add(newRowData).draw().node();
 }

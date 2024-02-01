@@ -32,7 +32,7 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS players (
     player_id INT AUTO_INCREMENT PRIMARY KEY,
-    player_name VARCHAR(100) NOT NULL,
+    player_name VARCHAR(100) NOT NULL UNIQUE,
     position VARCHAR(50),
     birthdate DATE,
     team_id INT,

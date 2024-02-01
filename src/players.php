@@ -78,17 +78,17 @@ include './includes/reusable_views.inc.php';
                 </div>
                 <div class="modal-body">
                     <form>
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" class="form-control" id="username">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" id="player-name">
 
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" id="email">
+                        <label for="position" class="form-label">Position</label>
+                        <input type="text" name="position" class="form-control" id="player-position">
 
                         <label for="birthdateInput" class="form-label">Birthdate</label>
-                        <input type="date" name="birthdate" class="form-control" id="birthdate">
+                        <input type="date" name="birthdate" class="form-control" id="player-birthdate">
 
-                        <label for="role" class="form-label">Role</label>
-                        <select class="form-select" id="role" name="role">
+                        <label for="team" class="form-label">Team</label>
+                        <select class="form-select" name="team" id="player-team">
                             <!-- Options will be dynamically populated here -->
                         </select>
 
@@ -97,7 +97,7 @@ include './includes/reusable_views.inc.php';
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="updatePlayer()" class="btn btn-primary edit-button"><i class="fas fa-save"></i>Save</button>
+                    <button type="button" id="edit-button" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
                 </div>
             </div>
         </div>

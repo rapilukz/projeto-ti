@@ -94,7 +94,6 @@ function deleteUser(event) {
 
 function showUseEditModal(event) {
 	const id = $(event.target).attr("id").split("-")[1];
-	console.log(id);
 	const base = `#${id}`;
 
 	const userData = {
