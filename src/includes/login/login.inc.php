@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $_SESSION["user_username"] = htmlspecialchars($result["username"]);
         $_SESSION["user_email"] = htmlspecialchars($result["email"]);
         $_SESSION["user_birthdate"] = htmlspecialchars($result["birthdate"]);
+        $_SESSION["user_role"] = $result["role"];
 
         $_SESSION["last_regeneration"] = time();
 

@@ -8,13 +8,20 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(100) NOT NULL,
     PASSWORD VARCHAR(255) NOT NULL,
     birthdate DATE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     role VARCHAR(50) DEFAULT 'user'
 );
 
 -- Set First user to admin
-UPDATE users SET role = 'admin' ORDER BY user_id LIMIT 1;
-select * from users;
+UPDATE
+    users
+SET
+    role = 'admin'
+ORDER BY
+    user_id
+LIMIT
+    1;
+
 --
 CREATE TABLE IF NOT EXISTS Teams (
     team_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -39,7 +46,9 @@ CREATE TABLE IF NOT EXISTS players (
     position VARCHAR(50),
     birthdate DATE,
     team_id INT,
-    FOREIGN KEY (team_id) REFERENCES teams(team_id) ON DELETE SET NULL
+    FOREIGN KEY (team_id) REFERENCES teams(team_id) ON DELETE
+    SET
+        NULL
 );
 
 INSERT INTO
@@ -70,6 +79,3 @@ VALUES
     ('Ronald Koeman', 'UEFA Pro', 3),
     ('Hansi Flick', 'UEFA Pro', 4),
     ('Stefano Pioli', 'UEFA Pro', 5);
-    
-
-    

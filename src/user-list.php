@@ -3,7 +3,7 @@
 session_start();
 include './includes/reusable_views.inc.php';
 
-if (!isset($_SESSION["user_id"])) {
+if (!isset($_SESSION["user_id"]) || (isset($_SESSION["user_role"]) && $_SESSION["user_role"] != "admin")) {
     header("Location: ./index.php");
 }
 ?>

@@ -2,7 +2,7 @@
 
 function render_main_pages()
 {
-    if (isset($_SESSION["user_id"])) {
+    if (isset($_SESSION["user_id"]) && isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "admin") {
         echo ' <ul class="links d-flex main-links"> 
             <li><a href="./players.php" class="link">Players</a></li>
             <li><a href="./teams.php" class="link">Teams</a></li>
@@ -19,6 +19,7 @@ function render_main_pages()
 ';
     }
 }
+
 
 function output_user()
 {
