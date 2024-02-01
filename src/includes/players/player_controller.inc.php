@@ -41,3 +41,9 @@ function nameIsTaken(object $pdo, string $name, $id)
         return false;
     }
 }
+
+
+function updatePlayerData(object $pdo, string $id, string $name, string $position, string $birthdate, $teamId)
+{
+    updatePlayer($pdo, $id, $name, $position, $birthdate, $teamId);
+}

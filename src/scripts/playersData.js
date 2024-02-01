@@ -45,7 +45,7 @@ function fillTable() {
 }
 
 function renderButtons(data) {
-	return `<button id="row-${data.player_id}" class="btn btn-primary btn-sm edit-button" onclick='showPlayerEditModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>
+	return `<button id="row-${data.player_id}" class="btn btn-primary btn-sm edit-button" onclick='showEditPlayerModal(event)'><i class='fa-solid fa-pencil'></i>Edit</button>
 		<button id="row-${data.player_id}" class="btn btn-danger btn-sm delete-button" onclick='deletePlayer(event);'><i class='fa-solid fa-trash-can'></i>Delete</button>`;
 }
 
@@ -83,11 +83,84 @@ function showInserPlayerModal() {
 	showModal();
 }
 
+function showEditPlayerModal(event) {
+	document.querySelector(".modal-title").innerHTML = "Edit Team";
+	const id = $(event.target).attr("id").split("-")[1];
+
+	const base = `#${id}`;
+	const playerData = {
+		id: id,
+		name: $(`${base} td.name-row`).text(),
+		position: $(`${base} td.position-row`).text(),
+		birthdate: $(`${base} td.birthdate-row`).text(),
+		team: $(`${base} td.team-row`).text(),
+	};
+
+	showModal();
+	renderModalData(playerData);
+}
+
+function renderModalData(data) {
+	$("#player-name").val(data.name);
+	$("#player-position").val(data.position);
+	$("#player-birthdate").val(data.birthdate);
+	$("#player-team").val(data.team);
+	document.getElementById("modal").setAttribute("player-id", data.id);
+	document
+		.getElementById("edit-button")
+		.addEventListener("click", updatePlayer);
+}
+
 function clearModalData() {
 	$("#player-name").val("");
 	$("#player-position").val("");
 	$("#player-birthdate").val("");
-	$("#player-team").val(""); // Clear the team dropdown
+	$("#player-team").val("");
+}
+
+function updatePlayer() {
+	const id = $("#modal").attr("player-id");
+	const name = $("#player-name").val();
+	const position = $("#player-position").val();
+	const birthdate = $("#player-birthdate").val();
+	const team = $("#player-team").val();
+
+	const updateData = {
+		id: id,
+		name: name,
+		position: position,
+		birthdate: birthdate,
+		team: team,
+	};
+
+	$.ajax({
+		url: "./includes/players/player_update.inc.php",
+		method: "POST",
+		dataType: "json",
+		data: {
+			id,
+			name,
+			position,
+			birthdate,
+			team,
+		},
+		success: async function (data) {
+			if (data.status === "error") {
+				renderModalErrors(data.message);
+			}
+			if (data.status == "success") {
+				setNewData(updateData);
+				closeModal();
+				document
+					.getElementById("edit-button")
+					.removeEventListener("click", updatePlayer);
+				clearModalData();
+			}
+		},
+		error: function (xhr, status, error) {
+			console.error("Error: " + status);
+		},
+	});
 }
 
 function insertPlayer() {
@@ -170,4 +243,14 @@ function fillTeamsDropdown() {
 			console.error("Error: " + status);
 		},
 	});
+}
+
+function setNewData(data) {
+	const id = data.id;
+	const base = `#${id}`;
+
+	$(`${base} td.name-row`).text(data.name);
+	$(`${base} td.position-row`).text(data.position);
+	$(`${base} td.birthdate-row`).text(data.birthdate);
+	$(`${base} td.team-row`).text(data.team);
 }

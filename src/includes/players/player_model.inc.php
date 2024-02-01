@@ -74,3 +74,18 @@ function insertPlayer(object $pdo, string $name, string $position, string $birth
         die("Query Failed: " . $e->getMessage());
     }
 }
+
+function updatePlayer(object $pdo, string $id, string $name, string $position, string $birthdate, $teamId)
+{
+
+    $query = "UPDATE players 
+                  SET player_name = :player_name, position = :position, birthdate = :birthdate, team_id = :team_id
+                  WHERE player_id = :player_id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':player_name', $name);
+    $stmt->bindParam(':position', $position);
+    $stmt->bindParam(':birthdate', $birthdate);
+    $stmt->bindParam(':team_id', $teamId);
+    $stmt->bindParam(':player_id', $id);
+    $stmt->execute();
+}
