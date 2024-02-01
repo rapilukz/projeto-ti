@@ -105,9 +105,6 @@ include './includes/reusable_views.inc.php';
     </div>
 
 
-    <script>
-        fillUsersTable();
-    </script>
 </body>
 
 </html>
