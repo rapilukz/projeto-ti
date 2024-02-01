@@ -80,10 +80,10 @@ include './includes/reusable_views.inc.php';
                 <div class="modal-body">
                     <form>
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control" id="trainer-name">
+                        <input type="text" name="name" class="form-control" id="name">
 
                         <label for="license" class="form-label">License</label>
-                        <input type="text" name="license" class="form-control" id="trainer-license">
+                        <input type="text" name="license" class="form-control" id="license">
 
                         <label for="team" class="form-label">Team</label>
                         <select class="form-select" name="team" id="team">
@@ -95,7 +95,7 @@ include './includes/reusable_views.inc.php';
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="updateTrainer()" class="btn btn-primary edit-button"><i class="fas fa-save"></i>Save</button>
+                    <button type="button" id="edit-button" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
                 </div>
             </div>
         </div>

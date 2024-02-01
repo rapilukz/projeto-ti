@@ -160,6 +160,7 @@ function showInserTeamModal() {
 	document.getElementById("edit-button").addEventListener("click", insertTeam);
 	showModal();
 }
+
 function insertTeam() {
 	const name = $("#name").val();
 	const year = $("#foundation-year").val();
