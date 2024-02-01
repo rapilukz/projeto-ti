@@ -1,0 +1,48 @@
+#user-table_paginate,
+#user-table_next,
+#user-table_previous {
+	color: #edf0f1 !important;
+}
+
+#user-table_previous:not(.disabled):hover,
+#user-table_next:not(.disabled):hover {
+	color: var(--color1) !important;
+	background: none !important;
+	border: none !important;
+	cursor: pointer;
+}
+
+#user-table_filter {
+	display: flex;
+	justify-content: end;
+	margin-bottom: 0.5rem;
+}
+
+#user-table_filter input {
+	background: transparent !important;
+	padding: 0.25rem 0.5rem;
+	width: 350px;
+	min-height: 30px;
+	border-radius: 0.25rem;
+	border: 1px solid var(--color1) !important;
+	color: white !important;
+}
+
+#user-table_filter input:focus {
+	outline: none;
+}
+
+#user-table_length {
+	display: flex;
+	gap: 0.5rem;
+}
+
+#user-table_length select {
+	border: 1px solid var(--color1) !important;
+	color: #edf0f1;
+	padding: 0.4rem 0.5rem;
+}
+
+#user-table_length select option {
+	color: var(--color1);
+}

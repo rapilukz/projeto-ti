@@ -39,9 +39,39 @@ function isUsernameTaken(object $pdo, string $username): bool
     }
 }
 
+function isUpdateUsernameTaken(object $pdo, string $username, $id): bool
+{
+
+    $result = getUsername($pdo, $username);
+
+    if (is_array($result) && $result["user_id"] == $id && $result["username"] == $username) return false;
+
+    if (getUsername($pdo, $username)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function isEmailRegistered(object $pdo, string $email): bool
 {
-    if (getEmail($pdo, $email)) {
+
+    $result = getEmail($pdo, $email);
+
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isUpdateEmailRegistered(object $pdo, string $email, $id): bool
+{
+    $result = getEmail($pdo, $email);
+
+    if (is_array($result) && $result["user_id"] == $id && $result["email"] == $email) return false;
+
+    if ($result) {
         return true;
     } else {
         return false;

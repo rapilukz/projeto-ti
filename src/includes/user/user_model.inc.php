@@ -35,7 +35,7 @@ function deleteUserById(object $pdo, string $id)
 
 function getUsername(object $pdo, string $username)
 {
-    $query = "SELECT username FROM users WHERE username = :username;";
+    $query = "SELECT username, user_id FROM users WHERE username = :username;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":username", $username);
     $stmt->execute();
@@ -48,7 +48,7 @@ function getUsername(object $pdo, string $username)
 
 function getEmail(object $pdo, string $email)
 {
-    $query = "SELECT email FROM users WHERE email = :email;";
+    $query = "SELECT email, user_id FROM users WHERE email = :email;";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":email", $email);
     $stmt->execute();

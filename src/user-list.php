@@ -20,14 +20,11 @@ if (!isset($_SESSION["user_id"])) {
         <!-- CSS  -->
         <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/table.css" />
+        <link rel="stylesheet" href="css/userTable.css" />
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" />
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-        <!-- JS -->
-        <script src="scripts/generics.js"></script>
-        <script src="scripts/userData.js"></script>
 
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
@@ -36,6 +33,11 @@ if (!isset($_SESSION["user_id"])) {
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+
+        <!-- JS -->
+        <script src="scripts/generics.js"></script>
+        <script src="scripts/userData.js"></script>
+
     </head>
     <title>Projeto TI</title>
 </head>
@@ -54,21 +56,14 @@ if (!isset($_SESSION["user_id"])) {
 
     <div class="main-container">
         <div class="container">
-            <div class="d-flex justify-content-end">
-                <div class="input-group mb-3" id="search-container">
-                    <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i>
-                    </span>
-                    <input type="text" oninput="searchTable();" id="search" class="form-control" placeholder="Search by Username" aria-label="search" aria-describedby="basic-addon1">
-                </div>
-            </div>
-            <table class="table table-bordered text-center" id="user-table">
+            <table class="table text-center" id="user-table">
                 <thead>
                     <tr class="table-header">
-                        <th class="col-2">#</th>
-                        <th class="col-2">Username</th>
-                        <th class="col-2">Email</th>
-                        <th class="col-2">Birthdate</th>
-                        <th class="col-2">Role</th>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Birthdate</th>
+                        <th>Role</th>
                         <th class="col-2">Actions</th>
                     </tr>
                 </thead>
@@ -113,10 +108,6 @@ if (!isset($_SESSION["user_id"])) {
         </div>
     </div>
 
-
-    <script>
-        fillUsersTable();
-    </script>
 </body>
 
 </html>

@@ -24,11 +24,11 @@ if (isset($_POST['id']) && isset($_POST["username"]) && isset($_POST["email"]) &
             $errors[] = "Invalid Birthdate";
         }
 
-        if (isUsernameTaken($pdo, $username)) {
+        if (isUpdateUsernameTaken($pdo, $username, $id)) {
             $errors[] = "Username already taken!";
         }
 
-        if (isEmailRegistered($pdo, $email)) {
+        if (isUpdateEmailRegistered($pdo, $email, $id)) {
             $errors[] = "Email already registered!";
         }
 
