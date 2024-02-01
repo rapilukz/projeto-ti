@@ -104,7 +104,7 @@ function renderModalData(data) {
 	$("#player-name").val(data.name);
 	$("#player-position").val(data.position);
 	$("#player-birthdate").val(data.birthdate);
-	$("#player-team").val(data.team);
+	$("#team").val(data.team);
 	document.getElementById("modal").setAttribute("player-id", data.id);
 	document
 		.getElementById("edit-button")
@@ -115,7 +115,7 @@ function clearModalData() {
 	$("#player-name").val("");
 	$("#player-position").val("");
 	$("#player-birthdate").val("");
-	$("#player-team").val("");
+	$("#team").val("");
 }
 
 function updatePlayer() {
@@ -123,7 +123,7 @@ function updatePlayer() {
 	const name = $("#player-name").val();
 	const position = $("#player-position").val();
 	const birthdate = $("#player-birthdate").val();
-	const team = $("#player-team").val();
+	const team = $("#team").val();
 
 	const updateData = {
 		id: id,
@@ -171,7 +171,7 @@ function insertPlayer() {
 	const name = $("#player-name").val();
 	const position = $("#player-position").val();
 	const birthdate = $("#player-birthdate").val();
-	const team = $("#player-team").val();
+	const team = $("#team").val();
 
 	$.ajax({
 		url: "./includes/players/player_insert.inc.php",
@@ -215,34 +215,6 @@ function insertNewRow(data) {
 	};
 
 	table.row.add(newRowData).draw().node();
-}
-
-function fillTeamsDropdown() {
-	const teamInput = $("#player-team");
-
-	$.ajax({
-		url: "./includes/players/player_teams.inc.php",
-		method: "POST",
-		dataType: "json",
-		success: function (data) {
-			if (data.status == "error") {
-				console.log(data);
-			}
-
-			if (data.status == "success") {
-				const options = data.message;
-				options.forEach((option) => {
-					const optionHtml = $("<option>")
-						.text(option.team_name)
-						.val(option.team_name);
-					teamInput.append(optionHtml);
-				});
-			}
-		},
-		error: function (xhr, status, error) {
-			console.error("Error: " + status);
-		},
-	});
 }
 
 function setNewData(data) {

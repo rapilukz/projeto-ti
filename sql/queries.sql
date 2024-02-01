@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS players (
     position VARCHAR(50),
     birthdate DATE,
     team_id INT,
-    FOREIGN KEY (team_id) REFERENCES teams(team_id) ON DELETE CASCADE
+    FOREIGN KEY (team_id) REFERENCES teams(team_id) ON DELETE SET NULL
 );
 
 INSERT INTO
@@ -46,7 +46,7 @@ VALUES
     ('Lionel Messi', 'Forward', '1987-06-24', 3),
     ('Neymar Jr.', 'Forward', '1992-02-05', 3),
     ('Robert Lewandowski', 'Striker', '1988-08-21', 4),
-    ('Zlatan Ibrahimović', 'Striker', '1981-10-03', 2);
+    ('Zlatan Ibrahimović', 'Striker', '1981-10-03', 12);
 
 CREATE TABLE IF NOT EXISTS trainers (
     trainer_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,7 +67,7 @@ VALUES
     ('Ronald Koeman', 'UEFA Pro', 3),
     ('Hansi Flick', 'UEFA Pro', 4),
     ('Stefano Pioli', 'UEFA Pro', 5);
-
+    
 SELECT
     *
 FROM
@@ -82,3 +82,4 @@ SELECT
     *
 FROM
     teams;
+    

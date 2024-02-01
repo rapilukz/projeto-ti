@@ -23,3 +23,31 @@ function renderModalErrors(errors) {
 		html.append(errorHtml);
 	});
 }
+
+function fillTeamsDropdown() {
+	const teamInput = $("#team");
+
+	$.ajax({
+		url: "./includes/players/player_teams.inc.php",
+		method: "POST",
+		dataType: "json",
+		success: function (data) {
+			if (data.status == "error") {
+				console.log(data);
+			}
+
+			if (data.status == "success") {
+				const options = data.message;
+				options.forEach((option) => {
+					const optionHtml = $("<option>")
+						.text(option.team_name)
+						.val(option.team_name);
+					teamInput.append(optionHtml);
+				});
+			}
+		},
+		error: function (xhr, status, error) {
+			console.error("Error: " + status);
+		},
+	});
+}

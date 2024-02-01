@@ -31,8 +31,9 @@ include './includes/reusable_views.inc.php';
         <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 
         <!-- JS -->
-        <script src="scripts/generics.js"></script>
         <script src="scripts/playersData.js"></script>
+        <script src="scripts/generics.js"></script>
+
     </head>
     <title>Projeto TI</title>
 </head>
@@ -88,7 +89,7 @@ include './includes/reusable_views.inc.php';
                         <input type="date" name="birthdate" class="form-control" id="player-birthdate">
 
                         <label for="team" class="form-label">Team</label>
-                        <select class="form-select" name="team" id="player-team">
+                        <select class="form-select" name="team" id="team">
                             <!-- Options will be dynamically populated here -->
                         </select>
 
