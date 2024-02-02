@@ -74,7 +74,7 @@ if (!isset($_SESSION["user_id"])) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="edit-button" onclick="updateUser()" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
+                    <button type="button" id="edit-button" onclick="updateUser();" class="btn btn-primary modal-edit-button"><i class="fas fa-save"></i>Save</button>
                 </div>
             </div>
         </div>

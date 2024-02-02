@@ -22,7 +22,7 @@ async function updateUser() {
 	const email = $("#email").val();
 	const birthdate = $("#birthdate").val();
 
-	const mewData = {
+	const newData = {
 		id,
 		username,
 		email,
@@ -33,13 +33,13 @@ async function updateUser() {
 		url: "../includes/user/profile_update.inc.php",
 		method: "POST",
 		dataType: "json",
-		data: mewData,
+		data: newData,
 		success: async function (data) {
 			if (data.status === "error") {
 				renderModalErrors(data.message);
 			}
 			if (data.status == "success") {
-				setNewData(mewData);
+				setNewData(newData);
 				closeModal();
 			}
 		},
@@ -50,7 +50,7 @@ async function updateUser() {
 }
 
 function setNewData(data) {
-	$(`profile-main-username`).text(data.username);
+	$(`#profile-main-username`).text(data.username);
 	$(`#profile-username`).text(data.username);
 	$(`#profile-email`).text(data.email);
 	$(`#profile-birthdate`).text(data.birthdate);
