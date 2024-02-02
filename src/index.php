@@ -40,9 +40,39 @@ session_start();
 			render_main_pages();
 			output_user();
 			?>
-
-		</nav>
 	</header>
+	</nav>
+
+
+	<div id="cards-container" class="d-flex w-100 align-items-center justify-content-center">
+		<div class="card" style="width: 18rem;">
+			<img src="./images/ronaldo.jpg" class="card-img-top" alt="ronaldo">
+			<div class="card-body">
+				<h5 class="card-title">Players</h5>
+				<p class="card-text">Explore all the avaible players, find their teams and where they come from!</p>
+				<a href="./players.php" class="card-btn btn btn-primary">See Players</a>
+			</div>
+		</div>
+
+		<div class="card" style="width: 18rem;">
+			<img src="./images/Equipas.jpg" class="card-img-top" alt="equipas">
+			<div class="card-body">
+				<h5 class="card-title">Teams</h5>
+				<p class="card-text">Discover football teams' histories, their foundation year and the country they were born in!</p>
+				<a href="./teams.php" class="card-btn btn btn-primary">See Teams</a>
+			</div>
+		</div>
+
+		<div class="card" style="width: 18rem;">
+			<img src="./images/jose-mourinho.jpg" class="card-img-top" alt="jose mourinho">
+			<div class="card-body">
+				<h5 class="card-title">Trainers</h5>
+				<p class="card-text">Explore our team's coaches and their history, capabilities, license and more!</p>
+				<a href="./trainers.php" class="card-btn btn btn-primary">See Trainers</a>
+			</div>
+		</div>
+	</div>
+
 </body>
 
 </html>

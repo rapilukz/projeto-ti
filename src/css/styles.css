@@ -216,11 +216,13 @@ h4 {
 	margin-right: 5px;
 }
 
-.modal-edit-button {
+.modal-edit-button,
+.card-btn {
 	background-color: var(--color1) !important;
 	border: 1px solid var(--color1) !important;
 }
-.modal-edit-button:hover {
+.modal-edit-button:hover,
+.card-btn {
 	background-color: var(--color1-hover) !important;
 	border: 1px solid var(--color1-hover) !important;
 }
@@ -231,6 +233,17 @@ h4 {
 .insert-button i {
 	margin-right: 8px;
 	font-size: 0.75rem;
+}
+
+#cards-container {
+	height: 80%;
+	gap: 6rem;
+}
+
+.card-img-top {
+	width: auto;
+	min-height: 191px;
+	object-fit: cover;
 }
 
 @media only screen and (max-width: 600px) {
