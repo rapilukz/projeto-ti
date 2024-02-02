@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // ERROR HANDLERS
         $errors = [];
 
-        $result = getEmail($pdo, $email);
+        $result = getUser($pdo, $email);
 
         if (isInputEmpty($email, $password)) {
             $errors["empty_input"] = "Fill in all fields";

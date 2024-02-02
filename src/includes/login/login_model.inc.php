@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function getEmail(object $pdo, string $email)
+function getUser(object $pdo, string $email)
 {
     $query = "SELECT * FROM users WHERE email = :email;";
     $stmt = $pdo->prepare($query);
